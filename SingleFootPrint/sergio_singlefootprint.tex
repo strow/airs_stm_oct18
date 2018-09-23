@@ -407,7 +407,61 @@
 % ---------------------------------------------------------------------
 \begin{frame}
   \frametitle{Looking at WV in UT/LS above DCC}
+  ``Cloud-Assisted Retrieval of Lower-Stratospheric Water Vapor from Nadir-View Satellite
+    Measurements''  J. Feng and Y. Huang, JAOT March 2018 pgs 541-553
+
+Paper shows comparisons to  AIRS L2 and Harvard Water Vapor instrument during Aura
+       Validation Experiment (AVE 2005)
+
+Figure 8 of the paper uses 2005/06/17 g083 for the analysis
+\landgraph[0.625]{}{FengHuangFig8.png}
+
 \end{frame}
+
+\subsection{2005/06/17 g083 over DCC}
+\begin{frame}
+\frametitle{Results g083 over the DCC : 10 hours before flight}
+The WV amounts are in ppmv at 80 mb\\
+\hspace{0.5in} \emph{BT1231 obs}  \hspace{2.0in} \emph{ERA WV} \\
+\begin{center}
+\dlandgraph{0.525}{Figs/FigsDCC/bt1231obs_2005_06_17_g083_vers04.pdf}{Figs/FigsDCC/era_wv_80mb_2005_06_17_g083_vers04.pdf}
+\end{center}
+ERA wv has very little structure in Lower Strat
+\end{frame}
+
+\begin{frame}
+\frametitle{Results g083 over the DCC : 10 hours before flight}
+The WV amounts are in ppmv at 80 mb\\
+\hspace{0.5in} \emph{UMBC WV}  \hspace{2.0in} \emph{AIRS L2} \\
+\begin{center}
+\dlandgraph{0.525}{Figs/FigsDCC/umbc_wv_80mb_2005_06_17_g083_vers04.pdf}{Figs/FigsDCC/airsL2_wv_80mb_2005_06_17_g083_vers04.pdf}
+\end{center}
+UMBC has lots of structure in Lower Strat \\
+Little black dots (AIRS L2) : good/best QA TSuf/ClearSky OLR
+\end{frame}
+
+\begin{frame}
+\frametitle{Results g083 over the DCC : 10 hours before flight}
+Mean Lower Strat WV amounts \\
+Solid line = mean, shading = std dev, black dots = Harvard U. instr\\
+\landgraph[0.625]{}{Figs/FigsDCC/umbc_era_airsL2_wv_pressure_2005_06_17_g083_vers04.png}
+AIRS L2 much drier than UMBC/ERA!!
+\end{frame}
+
+\begin{frame}
+\frametitle{Some comments}
+\begin{itemize}
+  \item flight had g193/g914 overpass, I've looked at AIRS L2/UMBC/ERA for that flight
+    \begin{itemize}
+      \item that flight was over very clear scenes (looked at MODIS L1 images, BT1231 obs compared to ERA surf temp)
+      \item at 140 mb, both AIRS L2 and UMBC had 0.00 $\pm$ 0.75 ppmv bias, ERA had -2 ppmv bias
+      \item at 080 mb, both AIRS L2 and UMBC had 1.75 $\pm$ 0.50 ppmv bias, ERA had 1.25 ppmv bias      
+    \end{itemize}
+  \item Jing Feng and I have also looked at 2014/03/04 data, see similar results over DCC : esp at 140 mb, there
+        are biases between \emph{in-situ} and AIRS L2, while our retrievals have much smaller biases
+\end{itemize}
+\end{frame}
+
 % ---------------------------------------------------------------------
 \begin{frame}
   \frametitle{Conclusions}
