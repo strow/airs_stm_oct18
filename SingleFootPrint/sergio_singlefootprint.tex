@@ -61,7 +61,7 @@
   \item Show and tell
     \begin{itemize}
     \item Hurricane Florence
-    \item Looking at humidity above DCC
+    \item Looking at humidity above DCC : wetting or drying?
     \item CO retrievals (post-processing after thermodynamic retrieval)
     \end{itemize}
   \end{itemize}
@@ -412,7 +412,7 @@
 
 \begin{small}
 Comparisons to  AIRS L2 and Harvard Water Vapor instrument during Aura
-Validation Experiment (AVE 2005)
+Validation Experiment (AVE 2005) \textcolor{red}{using Single Footprint Retrievals}
 \end{small}
 
 \landgraph[0.75]{}{FengHuangFig8.png}
@@ -431,7 +431,7 @@ ERA wv has very little structure in Lower Strat
 \end{frame}
 
 \begin{frame}
-\frametitle{Results g083 : 80 mb}
+\frametitle{g083 : 80 mb}
 The WV amounts are in ppmv at 80 mb\\
 \hspace{0.5in} \emph{UMBC WV}  \hspace{2.0in} \emph{AIRS L2} \\
 \begin{center}
@@ -442,7 +442,7 @@ Little black dots (AIRS L2) : good/best QA TSuf/ClearSky OLR
 \end{frame}
 
 \begin{frame}
-\frametitle{Results g083 : 140 mb}
+\frametitle{g083 : 140 mb}
 The WV amounts are in ppmv at 140 mb\\
 \hspace{0.5in} \emph{UMBC WV}  \hspace{2.0in} \emph{AIRS L2} \\
 \begin{center}
@@ -453,7 +453,75 @@ Little black dots (AIRS L2) : good/best QA TSuf/ClearSky OLR
 \end{frame}
 
 \begin{frame}
-\frametitle{Results g083}
+\frametitle{Results Wetting of UT/LS}
+
+\vspace{-0.05in}
+  \textcolor{red}{JF/YH (and others) want to address seasonable
+  variability of wetting/drying of UT/LS by deep convection} \newline
+
+\vspace{-0.1in}
+The single footprint approach can help provide insight, as it is
+capable of showing spatial distribution patterns that are smeared out
+in AIRS L2, even at 140 mb
+   
+\vspace{-0.05in}  
+  \begin{small}
+  \begin{itemize}    
+  \item DCC1 = (tobs1231 < 230, 25 < rlat < 40, -95 < rlon < -80);
+  \item DCC2 = (tobs1231 < 230, 25 < rlat < 40, -95 < rlon < -80 \& (tobs1419 > tobs1231));  
+ \end{itemize}
+ \end{small}
+\vspace{-0.15in}
+  \begin{small}
+    \begin{table}[h]
+      \begin{center}
+        \begin{tabular}{lcc}
+          \hline
+          Pressure level & <UMBC-ERA> ppm  & <AIRSL2-ERA> ppm \\
+          \hline
+          All Pixels  (12150) at 80 mb & -0.078 $\pm$ 0.710  & -0.713 $\pm$ 0.447 \\
+          DCC Pixels1  (418)   at 80 mb & \textcolor{red}{+0.185 $\pm$ 0.514}  & \textcolor{blue}{-1.244 $\pm$ 0.630} \\
+          DCC Pixels2 (185)   at 80 mb & \textcolor{blue}{-0.214 $\pm$ 0.321}  & \textcolor{blue}{-1.209 $\pm$ 0.794} \\
+          \hline
+          All Pixels  (12150) at 140 mb & -0.7439 $\pm$ 3.2314  & -3.2132 $\pm$ 2.9456 \\
+          DCC Pixels1  (418)   at 140 mb & \textcolor{red}{+0.840 $\pm$ 2.166}  & \textcolor{blue}{-2.670 $\pm$ 2.037} \\
+          DCC Pixels2 (185)   at 140 mb & \textcolor{blue}{-0.893 $\pm$ 1.069}  & \textcolor{blue}{-3.830 $\pm$ 2.257} \\  
+          \hline
+        \end{tabular}
+      \end{center}
+    \end{table}
+  \end{small}
+
+\begin{small}
+Overall UMBC is showing wetting over the DCC compared to ERA, but drying at the pixels which have penetrated tropoapuse; AIRS L2
+is showing drying wrt ERA
+\end{small}
+\end{frame}
+
+\begin{frame}
+\frametitle{Wetting g083 : 80 mb}
+Wetting wrt ERA in ppmv at 80 mb\\
+\hspace{0.5in} \emph{UMBC WV}  \hspace{2.0in} \emph{AIRS L2} \\
+\begin{center}
+\dlandgraph{0.525}{Figs/FigsDCC/wetting_umbc_wv_80mb_2005_06_17_g083_vers04.pdf}{Figs/FigsDCC/wetting_airsL2_wv_80mb_2005_06_17_g083_vers04.pdf}
+\end{center}
+UMBC has lots of structure in Lower Strat \\
+Little black dots (AIRS L2) : good/best QA TSuf/ClearSky OLR
+\end{frame}
+
+\begin{frame}
+\frametitle{Wetting g083 : 140 mb}
+Wetting wrt ERA in ppmv at 140 mb\\
+\hspace{0.5in} \emph{UMBC WV}  \hspace{2.0in} \emph{AIRS L2} \\
+\begin{center}
+\dlandgraph{0.525}{Figs/FigsDCC/wetting_umbc_wv_140mb_2005_06_17_g083_vers04.pdf}{Figs/FigsDCC/wetting_airsL2_wv_140mb_2005_06_17_g083_vers04.pdf}
+\end{center}
+UMBC shows moistening away from the DCC \\
+Little black dots (AIRS L2) : good/best QA TSuf/ClearSky OLR
+\end{frame}
+
+\begin{frame}
+\frametitle{g083}
 Mean Lower Strat WV amounts \\
 Solid line = mean, shading = std dev, black dots = Harvard U. instr\\
 \landgraph[0.625]{}{Figs/FigsDCC/umbc_era_airsL2_wv_pressure_2005_06_17_g083_vers04.png}
@@ -470,8 +538,8 @@ AIRS L2 much drier than UMBC/ERA!!
       \item at 140 mb, both AIRS L2 and UMBC had 0.00 $\pm$ 0.75 ppmv bias, ERA had -2 ppmv bias
       \item at 080 mb, both AIRS L2 and UMBC had 1.75 $\pm$ 0.50 ppmv bias, ERA had 1.25 ppmv bias      
     \end{itemize}
-  \item Jing Feng and I have also looked at 2014/03/04 data, see similar results over DCC : esp at 140 mb, there
-        are biases between \emph{in-situ} and AIRS L2, while our retrievals have much smaller biases
+  \item Jing and I have also looked at 2014/03/04 data, see similar results over DCC : esp at 140 mb, there
+        are biases between \emph{in-situ} and AIRS L2, while our single footprint retrievals have much smaller biases    
 \end{itemize}
 \end{frame}
 
@@ -483,7 +551,7 @@ AIRS L2 much drier than UMBC/ERA!!
   \item Algorithm does water cloud and ice cloud retrievals, plus Surf Temp. T(z), WV(z), O3(z); can add on trace gases
   \item This talk concentrated on "new" products
     \begin{itemize}
-    \item AIRS L2 water amounts above DCC clouds are sometimes incorrect
+    \item AIRS L2 water amounts above DCC clouds are sometimes incorrect; Single Footprint looks like a better approach
     \item Column CO retrievals after single footprint thermodynamic retrievals are promising
     \begin{itemize}
       \item Column CH4 retrievals showed similar patterns to AIRS L2, but with a bias! More work ...
