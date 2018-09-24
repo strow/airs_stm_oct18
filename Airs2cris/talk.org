@@ -1,0 +1,224 @@
+#+startup: beamer
+#+Options: toc:nil H:1
+#+LaTeX_CLASS_OPTIONS: [10pt,t]
+#+TITLE: \large A Long-Term Homogeneous Hyperspectral Radiance Time Series: AIRS2CrIS
+#+BEAMER_HEADER: \date{\textit{\footnotesize June 20, 2018}}
+#+BEAMER_HEADER: \input beamer_setup
+#+BEAMER_HEADER: \usetheme{metropolis}
+#+BEAMER_HEADER: \metroset{titleformat title=allcaps}
+#+BEAMER_HEADER: \renewcommand{\UrlFont}{\small\tt}
+#+BEAMER_HEADER: \renewcommand*{\UrlFont}{\footnotesize}
+#+BEAMER_HEADER: \tolerance=1000
+#+BEAMER_HEADER: \RequirePackage{fancyvrb}
+#+BEAMER_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize}
+#+BEAMER_HEADER: \author{L.~Larrabee~Strow and Howard~Motteler (UMBC)}
+
+#+BEGIN_EXPORT latex
+\addtobeamertemplate{block begin}{
+  \setlength{\parsep}{0pt}
+  \setlength{\topsep}{3pt plus 2pt minus 2.5pt}
+  \setlength{\itemsep}{0pt plus 0pt minus 2pt}
+  \setlength{\partopsep}{2pt}
+}
+#+END_EXPORT
+
+* COMMENT Text left, graph right
+\vspace{-0.2in}
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+\vspace{0.05in}
+
+\small Doppler shifts in CrIS data well known and easy to calculate.  
+
+\vspace{0.05in}
+
+\small NWP bias correction unlikely to have correct terms to handle these.
+
+\vspace{0.05in}
+
+\small FSR in midwave max effects are \pm{}0.05K /Hamming apodized/
+
+\vspace{0.05in}
+
+\small Could do as a post-processor for NWP (Walter Wolf)
+
+\vspace{-0.2in}
+** \footnotesize /Hamming/ Apodized B(T) Errors
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+#+ATTR_LATEX: :width \linewidth 
+[[./testfig.pdf]]
+
+** 
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+We could also adjust SNPP and N2O Neon to be identical for reprocessing.
+
+* COMMENT  Just bullets
+
+- We generally only examine near-nadir FORs (15 / 16) in detail.
+
+- Users, of course, use all FORs
+
+- Examine them here for (a) clear, (b) all-scenes, especially with regard to inter-FOV differences.
+
+* COMMENT Two graphs side-by-side
+
+** Raw Clear FOV BT diffs
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+#+ATTR_LATEX: :width \linewidth 
+[[./testfig.pdf]]
+
+** NWP Bias Clear FOV BT diffs
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+#+ATTR_LATEX: :width \linewidth
+[[./testfig.pdf]]
+
+** 
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+Although clear scenes contain all FOVs, there are 3-4X more near nadir than at extreme scan angles.
+
+* COMMENT Two graphs top, one centered bottom
+
+\vspace{-0.35in}
+
+** \footnotesize Secant Diffs with FOR
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.5
+  :END:
+\vspace{-0.05in}
+#+ATTR_LATEX: :width 0.85\linewidth 
+\vspace{-0.05in}
+[[./testfig.pdf]]
+
+** \footnotesize Mean Secant Diffs
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.5
+  :END:
+\vspace{-0.05in}
+#+ATTR_LATEX: :width 0.85\linewidth
+\vspace{-0.05in}
+[[./testfig.pdf]]
+
+** 
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+
+
+\vspace{-0.25in}
+** \footnotesize Example: FOV9 Secant Corrections
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.5
+  :END:
+\vspace{-0.05in}
+#+ATTR_LATEX: :width 0.85\linewidth 
+\vspace{-0.05in}
+[[./testfig.pdf]]
+
+* COMMENT Text full width top, bottom graph left, text right
+\vspace{-0.1in}
+- "Best?" intercalibration of SNPP and N2O is from AIRS SNO double diffs.
+- AIRS will likely not be up, or operating properly, for J2
+- Is IASI good enough?
+- Or, can we use statistical sampling (more later on this)
+
+\vspace{-0.2in}
+
+** \footnotesize Latitude Sampling
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+#+ATTR_LATEX: :width \linewidth 
+\vspace{-0.1in}
+[[./testfig.pdf]]
+
+
+** \footnotesize 
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+\small
+Although scene type sampling is very different for AIRS and IASI, results are fairly similar.  Later will compare with area weighted sampling (for 900 \wn region only).
+
+* COMMENT Two graphs top, graph bottom left, text bottom right
+
+\vspace{-0.3in}
+** \footnotesize N2O - AIRS
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.05in}
+#+ATTR_LATEX: :width 0.95\linewidth 
+\vspace{-0.05in}
+[[./testfig.png]]
+
+** \footnotesize SNPP - AIRS
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.05in}
+#+ATTR_LATEX: :width 0.95\linewidth 
+\vspace{-0.05in}
+[[./testfig.png]]
+
+** 
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+\vspace{-0.1in}
+** \footnotesize N2O minus SNPP (32% more variability)
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.05in}
+#+ATTR_LATEX: :width 0.95\linewidth 
+\vspace{-0.05in}
+[[./testfig.png]]
+
+
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+\vspace{-0.1in}
+- N2O minus SNPP more variable!
+- Due to larger time differences!
+- AIRS SNO: 0.021 K  (0.05K unc?)
+- IASI SNO: 0.010 K  (0.05K unc?)
+- Global all FOR statistical differences: 0.013 K 
+
