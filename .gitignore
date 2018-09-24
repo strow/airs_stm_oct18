@@ -1,0 +1,11 @@
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+
+sergio_rta.pdf
+sergio_singlefootprint.pdf
+sergio_flux.pdf
