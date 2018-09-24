@@ -190,7 +190,7 @@
 
   \begin{itemize}
   \item 3200 sonde launches over a few years, ($\sim$ 220 each month)
-  \item Select AIRS ovepasses within $\pm$ 1 hour and 100 km of sonde
+  \item Select AIRS overpasses within $\pm$ 1 hour and 100 km of sonde
     launch, gives 80-100 "nearest" AIRS obs per sonde
   \item Match AIRS observations to ERA thermodynamic/cloud profiles (252455
     "nearest" AIRS obs)
@@ -360,7 +360,7 @@
     \begin{itemize}
     \item Only did column CO retrieval    
     \item bias/std dev over 12150 profiles $\sim$  AIRS NeDT,
-    \item at indivdual thick clouds biases could have $\geq$ 1 K biases (slope of ice clouds, no size fitting)
+    \item individual thick clouds could have $\geq$ 1 K biases (slope of ice clouds, no size fitting)
       in the window region \textcolor{red}{including where there are CO lines}
     \item so I zero out this bias in the CO region, before fitting for CO (WV/T biases still very good)
     \end{itemize}
@@ -484,7 +484,10 @@ AIRS L2 much drier than UMBC/ERA!!
   \item This talk concentrated on "new" products
     \begin{itemize}
     \item AIRS L2 water amounts above DCC clouds are sometimes incorrect
-    \item Column CO retrievals after single footprint thermodynamic retrievals
+    \item Column CO retrievals after single footprint thermodynamic retrievals are promising
+    \begin{itemize}
+      \item Column CH4 retrievals showed similar patterns to AIRS L2, but with a bias! More work ...
+    \end{itemize}
     \item Looking at the eye of Hurricane Florence
     \end{itemize}
   \item As usual, asking for co-operation in validating our code
