@@ -39,16 +39,19 @@
   \begin{itemize}
   \item CERES can produce total OLR or window region OLR
   \item AIRS spans much of the IR, and has information about clouds, gases and temperatures
-    \begin{itemize}
-    \item Can get the complete LW picture using LBL code (radiance/flux; slow) or RRTM (flux; fast)
-    \item For now use TwoSlab fluxes in RRTM, plan to use MRO clouds in the future
+    \begin{itemize}    
+    \item use LBL code (radiance/flux; slow) or RRTM (flux; fast)
+    \item use TwoSlab fluxes in RRTM, likely use MRO clouds in the future
+    \item \textcolor{red}{Larrabee has proposed L3 climate (trending) products from AIRS, our first use of
+          OLR spectral fluxes to study climate change}
     \end{itemize}
-  \item Will look at flux changes, and contribution by various components using
+  \item Talk focuses on contribution of various components to OLR flux changes using
     \begin{itemize}
-    \item ERA fields, averaged over latbins (cloud profiles turned to TwoSlabs)
+    \item ERA fields, averaged over latbins (cloud profiles turned to TwoSlabs) \textcolor{blue}{not good enough}
     \item Our retrieved thermodynamic and cloud rates (see 3.20 pm talk by Larrabee Strow "Level 3
       AIRS/CrIS/IASI Anomalies and Trends Derived from Radiance Trends"
     \end{itemize}
+  \item Antartic Fluxes "Unmasking the negative greenhouse effect over the Antarctic Plateau" by Seijas, Taylor, Cai, \emph{Nature 2018}    
   \end{itemize}
 \end{frame}
 % ---------------------------------------------------------------------
@@ -271,6 +274,8 @@
   \item RRTM allows us to dissect changes to OLR according to spectral region
   \item This gives us a different way to study climate trends
   \item TwoSlab fluxes "not too bad"!
+  \item ERA TwoSlab cloud trends $\rightarrow$ RRTM : large change in cirrus fraction
+  \item Much improved flux constraints using our retrievals on 15 years AIRS spectral rates
   \item To do list : try MRO clouds in RRTM ....
   \item To do list : cloud changes from AIRS L1b spectral rates ...
   \end{itemize}
