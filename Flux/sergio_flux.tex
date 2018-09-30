@@ -208,40 +208,6 @@
 \end{frame}
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
-\section{Time series}
-% ---------------------------------------------------------------------
-% ---------------------------------------------------------------------
-\begin{frame}
-  \frametitle{Calculated Time Series (using ERA)}
-  Monthly W/m2 from 2002/09 to 2017/08 \newline
-  \hspace{0.50in} No Clouds  \hspace{1.75in} TwoSlab Clouds \\
-  \begin{center}
-    \dlandgraph{0.48}{Figs/olr_lat_time_nocloud.pdf}{Figs//olr_lat_time_cloud.pdf}
-  \end{center}
-\end{frame}
-% ---------------------------------------------------------------------
-%\begin{frame}
-%  \frametitle{Greenhouse Effect}
-%  Monthly W/m2 from 2002/09 to 2017/08 \newline
-%  We know monthly averaged surface temperatures so we know power
-%  emitted at surface, so we can compute GH effect (with clouds is
-%  larger than without clouds) \newline 
-%  \hspace{0.50in} GHG only \hspace{1.75in} GHG + CLouds \\
-%  \begin{center}
-%    \dlandgraph{0.48}{Figs/ghgeffect_delta_sb_olr_lat_time_nocloud.pdf}{Figs/ghgNcloudeffect_delta_sb_olr_lat_time.pdf}
-%  \end{center}
-%\end{frame}
-% ---------------------------------------------------------------------
-\begin{frame}
-  \frametitle{Comparisons to CERES}
-  CERES OLR - ERA TwoSlab OLR  (W/m2)
-  \begin{center}
-    \noindent\includegraphics[width=0.625\linewidth]{Figs/ceresVSghgNcloudeffect_lat_time.pdf}
-  \end{center}
-  So clearly ERA clouds $\rightarrow$ TwoSlab/Fluxes shows much larger changes in OLR than observed!
-\end{frame}
-% ---------------------------------------------------------------------
-% ---------------------------------------------------------------------
 \section{Flux Changes by RRTM bands : ERA clouds}
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
@@ -286,13 +252,39 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Breakdown of changes}
+  \frametitle{Breakdown of changes 1}
 %  \begin{center}
 %    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_total_vs_atm_vs_GHG.pdf}
 %  \end{center}
   \hspace{0.50in} Clouds/Atmos/GHG  \hspace{1.5in} Ind. Gases \\
   \begin{center}
-    \dlandgraph{0.5}{Figs/umbc_total_vs_atm_vs_GHG.pdf}{Figs/umbc_total_vs_atm_vs_GHG2.pdf}
+    \dlandgraph{0.5}{Figs/umbc_total_vs_atm_vs_GHG.png}{Figs/umbc_total_vs_atm_vs_GHG2.png}
+  \end{center}
+
+ Guess we need errorbars .... TBD for next AIRS STM
+\end{frame}
+
+\begin{frame}
+  \frametitle{Breakdown of changes 2}
+%  \begin{center}
+%    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_total_vs_atm_vs_GHG.png}
+%  \end{center}
+  \hspace{0.50in} WV  \hspace{1.5in} CO2 \\
+  \begin{center}
+    \dlandgraph{0.5}{Figs/umbc_wvonly_spectralfluxchange.png}{Figs/umbc_co2only_spectralfluxchange.png}
+  \end{center}
+
+ Guess we need errorbars .... TBD for next AIRS STM
+\end{frame}
+
+\begin{frame}
+  \frametitle{Breakdown of changes 3}
+%  \begin{center}
+%    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_total_vs_atm_vs_GHG.png}
+%  \end{center}
+  \hspace{0.50in} Surf. Temp  \hspace{1.5in} Atm. Temp \\
+  \begin{center}
+    \dlandgraph{0.5}{Figs/umbc_STonly_spectralfluxchange.png}{Figs/umbc_Tonly_spectralfluxchange.png}
   \end{center}
 
  Guess we need errorbars .... TBD for next AIRS STM
@@ -321,3 +313,40 @@
 \end{document}
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
+
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+\section{Time series}
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+\begin{frame}
+  \frametitle{Calculated Time Series (using ERA)}
+  Monthly W/m2 from 2002/09 to 2017/08 \newline
+  \hspace{0.50in} No Clouds  \hspace{1.75in} TwoSlab Clouds \\
+  \begin{center}
+    \dlandgraph{0.48}{Figs/olr_lat_time_nocloud.pdf}{Figs//olr_lat_time_cloud.pdf}
+  \end{center}
+\end{frame}
+% ---------------------------------------------------------------------
+%\begin{frame}
+%  \frametitle{Greenhouse Effect}
+%  Monthly W/m2 from 2002/09 to 2017/08 \newline
+%  We know monthly averaged surface temperatures so we know power
+%  emitted at surface, so we can compute GH effect (with clouds is
+%  larger than without clouds) \newline 
+%  \hspace{0.50in} GHG only \hspace{1.75in} GHG + CLouds \\
+%  \begin{center}
+%    \dlandgraph{0.48}{Figs/ghgeffect_delta_sb_olr_lat_time_nocloud.pdf}{Figs/ghgNcloudeffect_delta_sb_olr_lat_time.pdf}
+%  \end{center}
+%\end{frame}
+% ---------------------------------------------------------------------
+\begin{frame}
+  \frametitle{Comparisons to CERES}
+  CERES OLR - ERA TwoSlab OLR  (W/m2)
+  \begin{center}
+    \noindent\includegraphics[width=0.625\linewidth]{Figs/ceresVSghgNcloudeffect_lat_time.pdf}
+  \end{center}
+  So clearly ERA clouds $\rightarrow$ TwoSlab/Fluxes shows much larger changes in OLR than observed!
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
