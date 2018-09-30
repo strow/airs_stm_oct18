@@ -42,12 +42,12 @@
     \begin{itemize}    
     \item use LBL code (radiance/flux; slow) or RRTM (flux; fast)
     \item use TwoSlab fluxes in RRTM, likely use MRO clouds in the future
-    \item \textcolor{red}{Larrabee has proposed L3 climate (trending) products from AIRS, our first use of
-          OLR spectral fluxes to study climate change}
+    \item \textcolor{red}{Larrabee has proposed L3 climate (trending) products from AIRS,
+          this is our first use of OLR spectral fluxes as product to study climate change}
     \end{itemize}
   \item Talk focuses on contribution of various components to OLR flux changes using
     \begin{itemize}
-    \item ERA fields, averaged over latbins (cloud profiles turned to TwoSlabs) \textcolor{blue}{not good enough}
+    \item ERA fields, averaged over latbins (cloud profiles turned to TwoSlabs) \textcolor{blue}{not good enough because of ERA clouds}
     \item Our retrieved thermodynamic and cloud rates (see 3.20 pm talk by Larrabee Strow "Level 3
       AIRS/CrIS/IASI Anomalies and Trends Derived from Radiance Trends"
     \end{itemize}
@@ -68,32 +68,41 @@
     \textcolor{blue}{\cd 15 \um band (Planck peak), BT $\sim$ 250 K or less} \newline
     \textcolor{blue}{\water Far-IR  BT is also pretty low} \newline
     \textcolor{red}{Outgoing Longwave Radiation $\ll$ radiated by surface}
+  \item Rough numbers (3) Incoming TOA solar = 1360 W/m2; cross section = 340 W/m2; albedo = 0.3;
+        so nominally need 238 W/m2 OLR
   \end{itemize}
 \end{frame}
 % ---------------------------------------------------------------------
-\begin{frame}
-  \frametitle{kCARTA TOA radiances (TRP profile)}
 
-  \begin{center}
-    \noindent\includegraphics[width=0.625\textwidth]{Figs/generic_planckTOArads.pdf}
-  \end{center}
+%\begin{frame}
+%  \frametitle{kCARTA TOA radiances (TRP profile)}
+
+%  \begin{center}
+%    \noindent\includegraphics[width=0.625\textwidth]{Figs/generic_planckTOArads.pdf}
+%  \end{center}
   
-  \begin{itemize}  
-  \item Red hashlines : kCARTA band edges
-  \item FarIR is a mix of H2004, H2008, H2012, MT-CKD 1
-  \item Cannot really do Far IR cloud calcs
-  \item so use RRTM (black hashlines : RRTM band edges)
-  \end{itemize}
+%  \begin{itemize}  
+%  \item Red hashlines : kCARTA band edges
+%  \item FarIR is a mix of H2004, H2008, H2012, MT-CKD 1
+%  \item Cannot really do Far IR cloud calcs
+%  \item so use RRTM (black hashlines : RRTM band edges)
+%  \end{itemize}
 
-\end{frame}
+%\end{frame}
 % ---------------------------------------------------------------------
 \begin{frame}
   \frametitle{kCARTA TOA BT (TRP profile)}
 
   \begin{center}
-    \noindent\includegraphics[width=0.95\textwidth]{Figs/generic_planckTOABT.pdf}
+    \noindent\includegraphics[width=0.75\textwidth]{Figs/generic_planckTOABT.pdf}
   \end{center}
-  
+
+  \begin{itemize}  
+  \item Red hashlines : kCARTA band edges
+  \item kCARTA liens (older spectroscopy, no cloud params in Far IR)
+  \item So use RRTM (black hashlines : RRTM band edges)
+  \end{itemize}
+
 \end{frame}
 % ---------------------------------------------------------------------
 \begin{frame}
@@ -101,16 +110,14 @@
 
   \hspace{0.50in} TOA BT1231 \hspace{1.75in} Fluxes \\
   \begin{center}
-    \dlandgraph{0.48}{Figs/generic_BT1231_vs_lat.pdf}{Figs/generic_olr_vs_lat.pdf}
+    \dlandgraph{0.55}{Figs/generic_BT1231_vs_lat.pdf}{Figs/generic_olr_vs_lat.pdf}
   \end{center}
 
   \begin{itemize}
-  \item Allsky radiance calcs use our TwoSlab clouds
-    $r(\nu) = f_{ice} r_{ice}(\nu) + f_{water} r_{water}(\nu) +
-    f_{overlap} r_{overlap}(\nu) + f_{clear} r_{clear}(\nu)$
-  \item \textcolor{red}{So for now we try flux calcs using TwoSlab clouds!}
+  \item \textcolor{red}{RRTM : try flux calcs using TwoSlab clouds!}
+  \item \begin{small}$r(\nu) = f_{ice} r_{ice}(\nu) + f_{water} r_{water}(\nu) +
+    f_{overlap} r_{overlap}(\nu) + f_{clear} r_{clear}(\nu)$ \end{small}
   \item RHS : 10 W/m2 CERES/TwoSlab bias, probably not emissivity
-  \item LHS : BT231 is away from peak of Planck function, so lot of flux is absorbed by GHG
   \end{itemize}
 \end{frame}
 % ---------------------------------------------------------------------
@@ -119,7 +126,7 @@
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
 \begin{frame}
-  \frametitle{Obs and SARTA changes, BT1231}
+  \frametitle{AIRS Obs vs ERA changes : BT1231}
 
   Earlier Larrabee showed BT1231 Sarta TwoSlab calcs are increasing by
   0.15 K/yr in the tropics, or $\sim$ 2.25 K over 15 years \newline
@@ -150,21 +157,15 @@
 \end{frame}
 % ---------------------------------------------------------------------
 \begin{frame}
-  \frametitle{Obs and SARTA changes, flux changes}
-
-  \begin{center}
-    \noindent\includegraphics[width=0.375\textwidth]{Figs/deltaolr_vs_lat.pdf}
-  \end{center}
+  \frametitle{AIRS Obs vs ERA changes : OLR}
 
   Take averaged profile over Year 01, all latbins, find OLR \newline
   Take averaged profile over Year 15, all latbins, find OLR \newline
   Turn on/off clouds, thermo, cloud, and CO2 changes
-  \begin{itemize}
-  \item Cyan : clear sky diff : CO2 trends
-  \item Blue : clear sky diff : (CO2 + thermo + WV)trends
-  \item Black : CO2 = 370 ppm; this is (clear sky vs cloudy sky)/100
-  \item Red : allsky sky diff : (CO2 + thermo trends + WV trends + cloud) trends
-  \end{itemize}
+  
+  \begin{center}
+    \noindent\includegraphics[width=0.625\textwidth]{Figs/deltaolr_vs_lat.pdf}
+  \end{center}
 \end{frame}
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
@@ -200,14 +201,10 @@
 \begin{frame}
   \frametitle{All Sky Flux Jacobians}
   Changes are 2002/2003 to 2016/2017  \newline
-  \hspace{0.50in} Thermodynamics \hspace{1.75in} Clouds \\
   \begin{center}
-    \dlandgraph{0.48}{Figs//allsky_temp_gas_fluxjacs.pdf}{Figs//allsky_cloud_fluxjacs.pdf}
+    \noindent\includegraphics[width=0.675\linewidth]{Figs//allsky_cloud_fluxjacs.pdf}
   \end{center}
-  \begin{itemize}
-  \item left panel clearly shows allsky flux changes (blue) is dominated by cloud changes (cyan)
-  \item right panel shows the bulk of the increase in tropics is due to changes in ice cloud fraction!
-  \end{itemize}  
+  Bulk of OLR tropical increase due to ERA ice cloud fraction!
 \end{frame}
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
@@ -215,40 +212,42 @@
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
 \begin{frame}
-  \frametitle{Calculated Time Series}
-  Monthly from 2002/09 to 2017/08 \newline
-  \hspace{0.50in} Clear Sky  \hspace{1.75in} All Sky \\
+  \frametitle{Calculated Time Series (using ERA)}
+  Monthly W/m2 from 2002/09 to 2017/08 \newline
+  \hspace{0.50in} No Clouds  \hspace{1.75in} TwoSlab Clouds \\
   \begin{center}
     \dlandgraph{0.48}{Figs/olr_lat_time_nocloud.pdf}{Figs//olr_lat_time_cloud.pdf}
   \end{center}
 \end{frame}
 % ---------------------------------------------------------------------
-\begin{frame}
-  \frametitle{Greenhouse Effect}
-  Monthly from 2002/09 to 2017/08 \newline
-  We know monthly averaged surface temperatures so we know power emitted at surface, so we can compute GH effect (with clouds
-  is larger than without clouds) \newline
-  \hspace{0.50in} Clear Sky  \hspace{1.75in} All Sky \\
-  \begin{center}
-    \dlandgraph{0.48}{Figs/ghgeffect_delta_sb_olr_lat_time_nocloud.pdf}{Figs/ghgNcloudeffect_delta_sb_olr_lat_time.pdf}
-  \end{center}
-\end{frame}
+%\begin{frame}
+%  \frametitle{Greenhouse Effect}
+%  Monthly W/m2 from 2002/09 to 2017/08 \newline
+%  We know monthly averaged surface temperatures so we know power
+%  emitted at surface, so we can compute GH effect (with clouds is
+%  larger than without clouds) \newline 
+%  \hspace{0.50in} GHG only \hspace{1.75in} GHG + CLouds \\
+%  \begin{center}
+%    \dlandgraph{0.48}{Figs/ghgeffect_delta_sb_olr_lat_time_nocloud.pdf}{Figs/ghgNcloudeffect_delta_sb_olr_lat_time.pdf}
+%  \end{center}
+%\end{frame}
 % ---------------------------------------------------------------------
 \begin{frame}
   \frametitle{Comparisons to CERES}
+  CERES OLR - ERA TwoSlab OLR  (W/m2)
   \begin{center}
-    \noindent\includegraphics[width=0.75\linewidth]{Figs/ceresVSghgNcloudeffect_lat_time.pdf}
+    \noindent\includegraphics[width=0.625\linewidth]{Figs/ceresVSghgNcloudeffect_lat_time.pdf}
   \end{center}
-  So clearly our implementation of TwoSlab/Fluxes is showing larger changes in OLR than are observed!
+  So clearly ERA clouds $\rightarrow$ TwoSlab/Fluxes shows much larger changes in OLR than observed!
 \end{frame}
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
-\section{Flux Changes by RRTM bands}
+\section{Flux Changes by RRTM bands : ERA clouds}
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
 \begin{frame}
   \frametitle{Flux Changes by RRTM bands}
-  (2002/2003) - (2016/2017) : RED means MORE flux in 2002/2003 \newline
+  RED means MORE flux (W/m2) in 2017/2018 \newline
   \hspace{0.50in} Clear Sky  \hspace{1.75in} All Sky \\
   \begin{center}
     \dlandgraph{0.375}{Figs/spectral_deltaolr_vs_lat_thermo_gases.png}{Figs/spectral_deltaolr_vs_lat_thermo_gases_clouds.png}
@@ -256,12 +255,42 @@
 
   \begin{small}
     \begin{itemize}
+    \item \textcolor{red}{fix all this, loooks wrong}
     \item LH panel, can see in 15 um band the change is red
     \item LH panel, can see more clr sky flux coming out in Southern Polar Regions in thermal window
     \item RH panel, more flux coming out in tropical window region in 2002
     \item RH panel, can see topical WV region had more flux emitted in 2002
     \end{itemize}
   \end{small}
+\end{frame}
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+\section{Flux Changes Using UMBC Spectral Rates Retrievals}
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+\begin{frame}
+  \frametitle{Flux Changes by RRTM bands}
+  Larrabee ran off spectral rates and OEM retrievals, plus into RRTM
+  RED means MORE flux (W/m2) in 2017/2018 \newline
+  \begin{center}
+    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_vs_band_fluxrates.png}
+  \end{center}
+\end{frame}
+% ---------------------------------------------------------------------
+\begin{frame}
+  \frametitle{Comaprison to CERES L3 rates}
+  \begin{center}
+    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_vs_ceres_fluxrates.pdf}
+  \end{center}
+ Guess we need errorbars .... TBD for next AIRS STM
+\end{frame}
+
+\begin{frame}
+  \frametitle{Breakdown of changes}
+  \begin{center}
+    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_total_vs_atm_vs_GHG.pdf}
+  \end{center}
+ Guess we need errorbars .... TBD for next AIRS STM
 \end{frame}
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
@@ -275,9 +304,11 @@
   \item This gives us a different way to study climate trends
   \item TwoSlab fluxes "not too bad"!
   \item ERA TwoSlab cloud trends $\rightarrow$ RRTM : large change in cirrus fraction
+        produces unrealistically large OLR changes
+  \item UMBC Spectral Rates $\rightarrow$ Thermodynamic+Cloud rates \textcolor{red}{good agreement
+        with OLR rates from CERES}
   \item Much improved flux constraints using our retrievals on 15 years AIRS spectral rates
   \item To do list : try MRO clouds in RRTM ....
-  \item To do list : cloud changes from AIRS L1b spectral rates ...
   \end{itemize}
 \end{frame}
 % ---------------------------------------------------------------------
