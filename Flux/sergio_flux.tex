@@ -208,6 +208,114 @@
 \end{frame}
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
+\section{Flux Changes by RRTM bands : ERA clouds}
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+\begin{frame}
+  \frametitle{Flux Changes by RRTM bands}
+  RED means MORE flux (W/m2) in 2017/2018 \newline
+  \hspace{0.50in} Clear Sky  \hspace{1.75in} All Sky \\
+  \begin{center}
+    \dlandgraph{0.5}{Figs/spectral_deltaolr_vs_lat_thermo_gases.png}{Figs/spectral_deltaolr_vs_lat_thermo_gases_clouds.png}
+  \end{center}
+
+  \begin{small}
+    \begin{itemize}
+    \item \textcolor{red}{fix all this, loooks wrong}
+    \item LH panel, can see in 15 um band the change is red
+    \item LH panel, can see more clr sky flux coming out in Southern Polar Regions in thermal window
+    \item RH panel, more flux coming out in tropical window region in 2002
+    \item RH panel, can see topical WV region had more flux emitted in 2002
+    \end{itemize}
+  \end{small}
+\end{frame}
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+\section{Flux Changes Using UMBC Spectral Rates Retrievals}
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+\begin{frame}
+  \frametitle{Flux Changes by RRTM bands}
+  Larrabee ran off spectral rates and OEM retrievals, plus into RRTM
+  RED means MORE flux (W/m2) in 2017/2018 \newline
+  \begin{center}
+    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_vs_band_fluxrates.png}
+  \end{center}
+\end{frame}
+% ---------------------------------------------------------------------
+\begin{frame}
+  \frametitle{Comparison to CERES L3 rates}
+  \begin{center}
+    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_vs_ceres_fluxrates.pdf}
+  \end{center}
+ Guess we need errorbars .... TBD for next AIRS STM
+\end{frame}
+
+\begin{frame}
+  \frametitle{Breakdown of changes 1}
+%  \begin{center}
+%    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_total_vs_atm_vs_GHG.pdf}
+%  \end{center}
+  \hspace{0.50in} Clouds/Atmos/GHG  \hspace{1.5in} Ind. Gases \\
+  \begin{center}
+    \dlandgraph{0.5}{Figs/umbc_total_vs_atm_vs_GHG.png}{Figs/umbc_total_vs_atm_vs_GHG2.png}
+  \end{center}
+
+ Guess we need errorbars .... TBD for next AIRS STM
+\end{frame}
+
+\begin{frame}
+  \frametitle{Breakdown of changes 2}
+%  \begin{center}
+%    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_total_vs_atm_vs_GHG.png}
+%  \end{center}
+  \hspace{0.50in} WV  \hspace{1.5in} CO2 \\
+  \begin{center}
+    \dlandgraph{0.5}{Figs/umbc_wvonly_spectralfluxchange.png}{Figs/umbc_co2only_spectralfluxchange.png}
+  \end{center}
+
+ Guess we need errorbars .... TBD for next AIRS STM
+\end{frame}
+
+\begin{frame}
+  \frametitle{Breakdown of changes 3}
+%  \begin{center}
+%    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_total_vs_atm_vs_GHG.png}
+%  \end{center}
+  \hspace{0.50in} Surf. Temp  \hspace{1.5in} Atm. Temp \\
+  \begin{center}
+    \dlandgraph{0.5}{Figs/umbc_STonly_spectralfluxchange.png}{Figs/umbc_Tonly_spectralfluxchange.png}
+  \end{center}
+
+ Guess we need errorbars .... TBD for next AIRS STM
+\end{frame}
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+\section{Conclusions}
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+\begin{frame}
+  \frametitle{Conclusions}
+  \begin{itemize}
+  \item RRTM allows us to dissect changes to OLR according to spectral region
+  \item This gives us a different way to study climate trends
+  \item TwoSlab fluxes "not too bad"!
+  \item ERA TwoSlab cloud trends $\rightarrow$ RRTM : large change in cirrus fraction
+        produces unrealistically large OLR changes
+  \item UMBC Spectral Rates $\rightarrow$ Thermodynamic+Cloud rates \textcolor{red}{good agreement
+        with OLR rates from CERES}
+  \item Much improved flux constraints using our retrievals on 15 years AIRS spectral rates
+  \item To do list : try MRO clouds in RRTM ....
+  \end{itemize}
+\end{frame}
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+\end{document}
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
 \section{Time series}
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
@@ -240,79 +348,5 @@
   \end{center}
   So clearly ERA clouds $\rightarrow$ TwoSlab/Fluxes shows much larger changes in OLR than observed!
 \end{frame}
-% ---------------------------------------------------------------------
-% ---------------------------------------------------------------------
-\section{Flux Changes by RRTM bands : ERA clouds}
-% ---------------------------------------------------------------------
-% ---------------------------------------------------------------------
-\begin{frame}
-  \frametitle{Flux Changes by RRTM bands}
-  RED means MORE flux (W/m2) in 2017/2018 \newline
-  \hspace{0.50in} Clear Sky  \hspace{1.75in} All Sky \\
-  \begin{center}
-    \dlandgraph{0.375}{Figs/spectral_deltaolr_vs_lat_thermo_gases.png}{Figs/spectral_deltaolr_vs_lat_thermo_gases_clouds.png}
-  \end{center}
 
-  \begin{small}
-    \begin{itemize}
-    \item \textcolor{red}{fix all this, loooks wrong}
-    \item LH panel, can see in 15 um band the change is red
-    \item LH panel, can see more clr sky flux coming out in Southern Polar Regions in thermal window
-    \item RH panel, more flux coming out in tropical window region in 2002
-    \item RH panel, can see topical WV region had more flux emitted in 2002
-    \end{itemize}
-  \end{small}
-\end{frame}
-% ---------------------------------------------------------------------
-% ---------------------------------------------------------------------
-\section{Flux Changes Using UMBC Spectral Rates Retrievals}
-% ---------------------------------------------------------------------
-% ---------------------------------------------------------------------
-\begin{frame}
-  \frametitle{Flux Changes by RRTM bands}
-  Larrabee ran off spectral rates and OEM retrievals, plus into RRTM
-  RED means MORE flux (W/m2) in 2017/2018 \newline
-  \begin{center}
-    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_vs_band_fluxrates.png}
-  \end{center}
-\end{frame}
-% ---------------------------------------------------------------------
-\begin{frame}
-  \frametitle{Comaprison to CERES L3 rates}
-  \begin{center}
-    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_vs_ceres_fluxrates.pdf}
-  \end{center}
- Guess we need errorbars .... TBD for next AIRS STM
-\end{frame}
-
-\begin{frame}
-  \frametitle{Breakdown of changes}
-  \begin{center}
-    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_total_vs_atm_vs_GHG.pdf}
-  \end{center}
- Guess we need errorbars .... TBD for next AIRS STM
-\end{frame}
-% ---------------------------------------------------------------------
-% ---------------------------------------------------------------------
-\section{Conclusions}
-% ---------------------------------------------------------------------
-% ---------------------------------------------------------------------
-\begin{frame}
-  \frametitle{Conclusions}
-  \begin{itemize}
-  \item RRTM allows us to dissect changes to OLR according to spectral region
-  \item This gives us a different way to study climate trends
-  \item TwoSlab fluxes "not too bad"!
-  \item ERA TwoSlab cloud trends $\rightarrow$ RRTM : large change in cirrus fraction
-        produces unrealistically large OLR changes
-  \item UMBC Spectral Rates $\rightarrow$ Thermodynamic+Cloud rates \textcolor{red}{good agreement
-        with OLR rates from CERES}
-  \item Much improved flux constraints using our retrievals on 15 years AIRS spectral rates
-  \item To do list : try MRO clouds in RRTM ....
-  \end{itemize}
-\end{frame}
-% ---------------------------------------------------------------------
-% ---------------------------------------------------------------------
-\end{document}
-% ---------------------------------------------------------------------
-% ---------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
