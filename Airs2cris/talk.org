@@ -1,7 +1,7 @@
 #+startup: beamer
 #+Options: toc:nil H:1
 #+LaTeX_CLASS_OPTIONS: [10pt,t]
-#+TITLE: \large A Long-Term Homogeneous Hyperspectral Radiance Time Series: AIRS2CrIS
+#+TITLE: \large A Climate Hyperspectral InfraRed Product (CHIRP)
 #+BEAMER_HEADER: \date{\textit{\footnotesize June 20, 2018}}
 #+BEAMER_HEADER: \input beamer_setup
 #+BEAMER_HEADER: \usetheme{metropolis}
@@ -11,7 +11,9 @@
 #+BEAMER_HEADER: \tolerance=1000
 #+BEAMER_HEADER: \RequirePackage{fancyvrb}
 #+BEAMER_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize}
+#+BEAMER_HEADER: \subtitle{\footnotesize AKA:  A Long-Term Homogeneous Hyperspectral Radiance Time Series: AIRS2CrIS}
 #+BEAMER_HEADER: \author{L.~Larrabee~Strow and Howard~Motteler (UMBC)}
+#+BEAMER_HEADER: \definecolor{mAlert}{rgb}{0.4824 0.0667 0.0745}
 
 #+BEGIN_EXPORT latex
 \addtobeamertemplate{block begin}{
@@ -23,77 +25,47 @@
 #+END_EXPORT
 
 * Introduction
-\vspace{-0.2in}
+  :PROPERTIES:
+  :Beamer_opt: shrink=20
+  :END:
+\vspace{-0.1in}
+
+- We have a mult-instrument hyperspectral radiance record (AIRS, CrIS(2), IASI(2)
+- NASA has asked for continuity products, with an emphasis on climate
+- For climate, the radiances are a "product" used by the scientific community
+** Instrument Characteristics (AIRS vs CrIS vs IASI)
+- Different Spectral Response Functions (SRF)
+- Different channel center frequencies ($\nu_i$)
+- Different, but similar absolute calibration accuracy (~0.1-0.3K)
+- BUT: /Their radiometric stability is at least ~100 X *BETTER* then absolute calibration accuracy!/
+** Possible Continuity Requirements (that provide same observation sensitivities)
+- Same SRFs 
+- Same $\nu_i$
+- Same Radiative transfer model (RTA)
+- Same noise?
+- Same retrieval algorithm
+
+\large Proposed Solution: \textcolor{maroon}{CHIRP}
+
+* CHIRP + Radiance Based L3 Retrieval Data Flow
+
 #+ATTR_LATEX: :width 1.0\linewidth 
 [[./Figs/Pdf/airs2cris_stm_talk1_landscape.pdf]]
 
-** CHIRP: (Common or Climate) Hyperspectral InfraRed Product
+- /OPD:/ Close to 0.8 / 0.6 /0.4 cm
+- /With Spectral Spacing:/ 0.0625 / 0.0833 / 0.1250 \wn
 
-- OPD: :: 0.8 / 0.6 /0.4 cm
-- Spectral Spacing: :: 0.0625 / 0.0833 / 0.1250 \wn
+Requirement: High-quality conversion of AIRS to CHIRP ILS
 
-* Why CHIRP
-  :PROPERTIES:
-  :Beamer_opt: shrink=5
-  :END:
+CHIRP = (1) AIRS2CrIS (2) CrIS modified SRF, (3) IASI modified SRF
 
-
-\vspace{-0.2in}
-
-- Convert AIRS, CrIS, IASI to a common spectral spectral response function
-  (SRF)
-- Correct for instrumental radiance offsets
-- Provides long-term radiance continuity over different instruments
-- Allows use of a single forward model (Radiative Transfer Algorithm) for
-  retrievals
-- Common SRF for AIRS/CrIS and IASI (1:30 and 9:30 equator crossings)
-- Applications
-   - Gridded (time/space) radiance products (“L1G”)
-   - Geophysical retrievals (anomalies, trends) directly from all-sky radiance  anomaly/trends.  (See talk by L. Strow)
-- OLR trends directly from radiance trend retrievals (See talk by Sergio
-  DeSouza-Machado)
-- Use for Level 2 retrievals?  Only way to mitigate radiance calibration
-  difference among instruments and to achieve common sensitivity (both for
-  radiances and RTA)
-
-
-
-
-
-
-* CHIRP Data Flow
+* CHIRP only Data Flow: Useful for Level 2 Retrievals?
 \vspace{-0.1in}
 
 #+ATTR_LATEX: :width 0.6\linewidth 
 [[./Figs/Pdf/airs2cris_stm_talk1_small.pdf]]
 
-
-* AIRS, CrIS Differences
-#+LaTeX: \vspace{-0.1in}
-- Instrument Line Shape (ILS): 
-   - CrIS: sinc
-   - AIRS: 2378 ILS's, about 75% in good shape
-- Footprints: roughly similar, some small issues
-- Orbits: sampling almost identical (later)
-- Noise: nominally similar
-- Calibration (later)
-
-** ILS Differences
-  :PROPERTIES:
-  :BEAMER_env: block
-  :END:
-\vspace{-0.05in}
-- Large in B(T)
-- Existing approach: Retrievals use different forward models
-- \textcolor{maroon}{Cannot inter-calibrate AIRS and CrIS with different ILS functions!} 
-- A hyperspectral radiance climatology requires same ILS between instruments
-
-\large Our approach: Convert AIRS to the CrIS ILS
-
-* Spectral Differences Among AIRS, CrIS, IASI
-
-#+ATTR_LATEX: :width 0.85\linewidth 
-[[./Figs/Pdf/hyperall_hamming.pdf]]
+\vspace{-0.1in}
 
 * AIRS2CrIS Algorithm
 #+LaTeX: \vspace{-0.15in}
@@ -131,7 +103,147 @@
 #+LaTeX: \vspace{-0.1in}
 \small Shortwave sounding region max noise dominated by CrIS
 
-* SNPP versus AIRS 
+* Spectral Differences Among AIRS, CrIS, IASI
+\vspace{-0.2in}
+** AIRS/CrIS/IASI Spectra
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+#+ATTR_LATEX: :width \linewidth 
+[[./Figs/Pdf/hyperall_hamming.pdf]]
+
+
+** CHIRP Spectrum (from AIRS)
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+#+ATTR_LATEX: :width \linewidth 
+[[./Figs/Pdf/a2c_full.pdf]]
+
+** 
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+AIRS modules shown in different colors in CHIRP spectrum. This is CrIS-NSR, final CHIRP will be between CrIS NSR and FSR (MW/SW).
+
+* Bad CHIRP Channels are Flagged
+\vspace{-0.35in}
+** \footnotesize Simulated Channels
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.05in}
+#+ATTR_LATEX: :width 0.77\linewidth 
+\vspace{-0.05in}
+[[./Figs/Pdf/a2c_full_show_sim.pdf]]
+
+** \footnotesize Dead Channels
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.05in}
+#+ATTR_LATEX: :width 0.77\linewidth 
+\vspace{-0.05in}
+[[./Figs/Pdf/a2c_full_show_dead.pdf]]
+
+** 
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+\vspace{-0.25in}
+
+** \footnotesize Noisy Channels
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.05in}
+#+ATTR_LATEX: :width 0.77\linewidth 
+\vspace{-0.05in}
+[[./Figs/Pdf/a2c_full_show_noise.pdf]]
+
+** \footnotesize Midwave Zoom: Dead and Noisy Chanels
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.05in}
+#+ATTR_LATEX: :width 0.77\linewidth 
+\vspace{-0.05in}
+[[./Figs/Pdf/a2c_full_show_dead_noise_water.pdf]]
+
+* Validation: PDF's of Single Channels
+- How closely will AIRS2CrIS (CHIRP) compare to CrIS for single scenes?
+- We collected a large random statistical set of AIRS and SNPP-CrIS observations for the 675.6 \wn channels (closest matches)
+- Examine the PDFs (histograms) of (a) AIRS native SRF (b) AIRS2CrIS, with (c) CrIS.
+
+* PDF's for a Single CHIRP Channel Compared to CrIS
+\vspace{-0.35in}
+** \footnotesize AIRS only, Noise added
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.05in}
+#+ATTR_LATEX: :width 0.77\linewidth 
+\vspace{-0.05in}
+[[./Figs/Pdf/jun4_2015_airs_675wn_global_counts_w_airsnoise.pdf]]
+
+** \footnotesize PDF for closest CrIS Channel
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.05in}
+#+ATTR_LATEX: :width 0.77\linewidth 
+\vspace{-0.05in}
+[[./Figs/Pdf/jun4_2015_airs_675wn_global_counts_w_airsnoise_and_cris.pdf]]
+
+** 
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+\vspace{-0.25in}
+
+** \footnotesize Convert AIRS to CrIS SRF
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.05in}
+#+ATTR_LATEX: :width 0.77\linewidth 
+\vspace{-0.05in}
+[[./Figs/Pdf/jun4_2015_airs_675wn_global_counts_w_airsnoise_and_cris_a2c.pdf]]
+
+** \footnotesize CrIS versus CHIRP
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.05in}
+#+ATTR_LATEX: :width 0.77\linewidth 
+\vspace{-0.05in}
+[[./Figs/Pdf/jun4_2015_airs_675wn_global_counts_w_airsnoise_and_cris_a2c_no_airs.pdf]]
+
+  :PROPERTIES:
+  :Beamer_opt: shrink=20
+  :END:
+* Validation: SNOs between CrIS and AIRS/CHIRP
+- SNOs are Simultaneous Nadir Overlaps
+- We generate them for combinations of AIRS, CrIS, and IASI
+- And convert AIRS to AIRS2CrIS (CHIRP)
+- Allows /channel-by-channel/ inter-comparisons (instrument offsets)
+- We also use AIRS2CrIS as a transfer standard to intercompare SNPP-CrIS to NOAA20-CrIS since SNPP and NOAA20 do not have nadir overlaps
+- See Chris Hepplewhite's talk on Friday for more details
+
+* SNPP versus AIRS: SNOs and Large Random Samplings
 \vspace{-0.3in}
 
 ** \footnotesize 2016 SNOs
@@ -178,7 +290,64 @@ Sources for Differences
 - Connecting CrIS instruments together will be easier!
 - So far spatial, spectral, and sampling among CrIS instruments will be identical 
 
+* Time Series Tests
+(See talk by Chris Hepplewhite on Friday)
+** Compared AIRS only to CHIRP Time Series
+\vspace{0.1in}
+Start with a 1% random subset of AIRS and CrIS observations:
 
+  - Series A: 10-year AIRS2CrIS time series trends
+  - Series B: CHIRP (CrIS NSR SRF) 
+    - First 5-years is AIRS2CRIS
+    - Second 5-years is CrIS 
+  - Correct AIRS2CrIS for radiometric offsets with CrIS
+  - Intercompare 10-year trends between Series A and B
+
+Results show climate level agreement between both. 
+
+\vspace{0.1in}
+
+Note: AIRS and CrIS do have sampling differences, very minimal with zonal averaging (which is what we did).
+* Pros of CHIRP
+- Only way I know to correct for inter-instrument radiometric offsets
+  - Certainly needed for AIRS vs CrIS+
+  - Maybe needed for CrIS vs CrIS
+- Use of a single RTA for retrievals, using "same" channels
+- Use of a single Level 2 retrieval algorithm (noise issues, although these can be normalized)
+- Essential for providing a long-term Level-3 radiance data set of climate quality (next talk)
+- A simpler dataset for users in 20+ years
+- Lowers manpower efforts in a time of decreasing funding
+
+* Cons of CHIRP
+- Lowers spectral resolution of AIRS in the long-wave (after Hamming apodization)
+- Lowers spectral resolution of CrIS-FSR a little in the mid-wave, short-wave
+- /If/ you need similar noise figures, will need to add (a little) noise to either AIRS2CRIS or CrIS depending on the spectral region
+- The first two items may impact minor gas retrievals (\methane, HDO, CO) depending on the instrument
+- BUT, you can always "import" the native resolution radiances into your algorithm for the minor-gas part of the retrieval.  Adds complexity and a separate RTA.
+- Its new.  
+
+* Future Work
+  :PROPERTIES:
+  :Beamer_opt: shrink=20
+  :END:
+
+- AIRS L1c is a pre-requisite for AIRS2CrIS
+  - Ready except for frequency calibration (orbital + drift and Doppler corrections)
+  - These should be ready in the next few months
+  - UMBC can produce L1c with these corrections now
+  - UMBC proposed L1c frequency set delivered to JPL
+- CHIRP Algorithm
+  - AIRS2CrIS is on github at https://github.com/strow/airs_deconv.git
+  - JPL SIPS is starting on integration and data formats
+  - UMBC needs to formalize quality flags
+  - Document performance 
+    - Algorithm paper accepted: Motteler et. a., IEEE Geophysical Transactions, 2018
+- CHIRP RTA
+  - UMBC has produced CrIS FSR=0.8/0.8/0.8 and NSR=0.8/0.4/0.2 OPD RTAs
+  - However, they use different spectroscopy (FSR more up-to-date, HITRAN 2012)
+  - We plan a new set of updates using HITRAN 2016 and new \cd-\water collision spectroscopy (see Sergio DeSouza-Machado's talk) in the next 6+ months?  Can also do CHIRP.
+  - Similar plan for AIRS L1c RTA
+  - Near term: could do proof-of-principle testing with CrIS NSR resolution for CHIRP
 
 * COMMENT Text left, graph right
 \vspace{-0.2in}
@@ -380,3 +549,36 @@ Although scene type sampling is very different for AIRS and IASI, results are fa
 - IASI SNO: 0.010 K  (0.05K unc?)
 - Global all FOR statistical differences: 0.013 K 
 
+
+
+
+a2c_full_show_dead_noise_water.pdf
+a2c_full_show_dead_noise_window.pdf
+a2c_full_show_dead_noise.pdf
+a2c_full_show_noise.pdf
+a2c_full_show_dead.pdf
+a2c_full_show_sim.pdf
+a2c_full.pdf
+a2cris_nedt.pdf
+ap_decon_corr.pdf
+sno_march2018_snpp_minus_noaa20_with_c2_airs_ingrey.pdf
+snpp_vs_airs_sno.pdf
+snpp_vs_airs_stats.pdf
+snpp_vs_airs_stats_wo_secant_corr.pdf
+airs2cris_stm_talk1_landscape.pdf
+airs2cris_stm_talk1_small.pdf
+airs2cris_stm_talk1_landscape_v2.pdf
+airs2cris_stm_talk1_landscape_noshadow.pdf
+jun4_2015_airs_675wn_global_counts_w_airsnoise_and_cris_a2c_no_airs.pdf
+jun4_2015_airs_675wn_global_counts_w_airsnoise_and_cris_a2c.pdf
+jun4_2015_airs_675wn_global_counts_w_airsnoise_and_cris.pdf
+jun4_2015_airs_675wn_global_counts_w_airsnoise.pdf
+jun4_2015_airs_675wn_global_counts.pdf
+1231and1566cm-1_dbt_uncertainty_vs_time_iasi_airs_2016_v2.pdf
+1231and1566cm-1_dbt_uncertainty_vs_time_iasi_airs_2016.pdf
+hyperall_hamming.pdf
+clarreo.pdf
+v5v6_kernel.pdf
+  :PROPERTIES:
+  :Beamer_opt: shrink=10
+  :END:
