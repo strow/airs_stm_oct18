@@ -1,0 +1,16 @@
+
+Trop T:  nanmean(10*temp_ret) = 0.147, std = 0.1177
+
+Strat T: nanmean(10*temp_ret) = -0.32, std = 0.20
+
+Water
+
+nanmean(100*wv_ret) = 0.0374
+nanstd(100*wv_ret) = 0.1136
+
+Trop wat  0.0679 std:  0.14
+
+Strat wat -0.0089, std 0.02
+
+
+

@@ -22,6 +22,164 @@
 }
 #+END_EXPORT
 
+* Introduction
+\vspace{-0.2in}
+#+ATTR_LATEX: :width 1.0\linewidth 
+[[./Figs/Pdf/airs2cris_stm_talk1_landscape.pdf]]
+
+** CHIRP: (Common or Climate) Hyperspectral InfraRed Product
+
+- OPD: :: 0.8 / 0.6 /0.4 cm
+- Spectral Spacing: :: 0.0625 / 0.0833 / 0.1250 \wn
+
+* Why CHIRP
+  :PROPERTIES:
+  :Beamer_opt: shrink=5
+  :END:
+
+
+\vspace{-0.2in}
+
+- Convert AIRS, CrIS, IASI to a common spectral spectral response function
+  (SRF)
+- Correct for instrumental radiance offsets
+- Provides long-term radiance continuity over different instruments
+- Allows use of a single forward model (Radiative Transfer Algorithm) for
+  retrievals
+- Common SRF for AIRS/CrIS and IASI (1:30 and 9:30 equator crossings)
+- Applications
+   - Gridded (time/space) radiance products (“L1G”)
+   - Geophysical retrievals (anomalies, trends) directly from all-sky radiance  anomaly/trends.  (See talk by L. Strow)
+- OLR trends directly from radiance trend retrievals (See talk by Sergio
+  DeSouza-Machado)
+- Use for Level 2 retrievals?  Only way to mitigate radiance calibration
+  difference among instruments and to achieve common sensitivity (both for
+  radiances and RTA)
+
+
+
+
+
+
+* CHIRP Data Flow
+\vspace{-0.1in}
+
+#+ATTR_LATEX: :width 0.6\linewidth 
+[[./Figs/Pdf/airs2cris_stm_talk1_small.pdf]]
+
+
+* AIRS, CrIS Differences
+#+LaTeX: \vspace{-0.1in}
+- Instrument Line Shape (ILS): 
+   - CrIS: sinc
+   - AIRS: 2378 ILS's, about 75% in good shape
+- Footprints: roughly similar, some small issues
+- Orbits: sampling almost identical (later)
+- Noise: nominally similar
+- Calibration (later)
+
+** ILS Differences
+  :PROPERTIES:
+  :BEAMER_env: block
+  :END:
+\vspace{-0.05in}
+- Large in B(T)
+- Existing approach: Retrievals use different forward models
+- \textcolor{maroon}{Cannot inter-calibrate AIRS and CrIS with different ILS functions!} 
+- A hyperspectral radiance climatology requires same ILS between instruments
+
+\large Our approach: Convert AIRS to the CrIS ILS
+
+* Spectral Differences Among AIRS, CrIS, IASI
+
+#+ATTR_LATEX: :width 0.85\linewidth 
+[[./Figs/Pdf/hyperall_hamming.pdf]]
+
+* AIRS2CrIS Algorithm
+#+LaTeX: \vspace{-0.15in}
+#+LaTeX: \begin{small}
+- Simple deconvolution to 0.1 \wn grid
+- $S_a r = r_A$, $r_o = S_a^{-1} r_A$ using Moore-Penrose pseudoinverse
+- $r_{A2C} = S_c \circledast r_o$
+- Small additional terms using linear regression (mostly bias)
+- Errors below assume AIRS ILS functions are perfect
+#+LaTeX: \end{small}
+#+LaTeX: \vspace{-0.25in}
+** \footnotesize AIRS2CrIS Mean Error (std. similar)
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+#+LaTeX: \vspace{-0.1in}
+#+ATTR_LATEX: :width 0.95\linewidth 
+[[./Figs/Pdf/ap_decon_corr.pdf]]
+
+** \footnotesize AIRS2CrIS Noise
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+#+LaTeX: \vspace{-0.1in}
+#+ATTR_LATEX: :width 0.95\linewidth 
+[[./Figs/Pdf/a2cris_nedt.pdf]]
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: ignoreheading
+  :END:
+
+#+LaTeX: \vspace{-0.1in}
+\small Shortwave sounding region max noise dominated by CrIS
+
+* SNPP versus AIRS 
+\vspace{-0.3in}
+
+** \footnotesize 2016 SNOs
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.1in}
+#+ATTR_LATEX: :width \linewidth 
+[[./Figs/Pdf/snpp_vs_airs_sno.pdf]]
+
+** \footnotesize 2016 Random Comparisons
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.1in}
+#+ATTR_LATEX: :width \linewidth 
+[[./Figs/Pdf/snpp_vs_airs_stats.pdf]]
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: ignoreheading
+  :END:
+
+\small
+Sources for Differences
+\vspace{-0.05in}
+- Differential calibration AIRS modules
+- AIRS SRFs (widths and centroids)
+- Non-linearity: CrIS, AIRS?
+- etc.
+
+* SNPP vs NOAA20 CrIS (via AIRS Snos)
+\vspace{-0.1in}
+
+#+ATTR_LATEX: :width 0.65\linewidth 
+[[./Figs/Pdf/sno_march2018_snpp_minus_noaa20_with_c2_airs_ingrey.pdf]]
+
+\vspace{-0.1in}
+
+\small
+- /Preliminary/, NOAA20 CrIS non-linearity will be updated in July 2018
+- Connecting CrIS instruments together will be easier!
+- So far spatial, spectral, and sampling among CrIS instruments will be identical 
+
+
+
 * COMMENT Text left, graph right
 \vspace{-0.2in}
 
