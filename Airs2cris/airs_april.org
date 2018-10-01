@@ -1,0 +1,452 @@
+#+startup: beamer
+#+Options: toc:nil H:1
+#+LaTeX_CLASS_OPTIONS: [10pt,t]
+#+TITLE: \large A Proposed AIRS+CrIS Radiance Product for Long-Term Continuity
+#+BEAMER_HEADER: \subtitle{\footnotesize{AIRS Science Team Meeting}}
+#+BEAMER_HEADER: \date{\vspace{0.1in}\footnotesize{April 25, 2018 \vfill}}
+#+BEAMER_HEADER: \author{L. Larrabee Strow\inst{1,2}, Howard Motteler\inst{2}, Chris Hepplewhite\inst{2}, Steven Buczkowski\inst{2}, and Sergio De-Souza Machado\inst{1,2}}
+#+BEAMER_HEADER: \institute[UMBC]{\inst{1} UMBC Physics Dept. \and \inst{2}UMBC JCET}
+#+BEAMER_HEADER: \input beamer_setup
+#+BEAMER_HEADER: \usetheme{metropolis}
+#+BEAMER_HEADER: \metroset{titleformat title=allcaps}
+#+BEAMER_HEADER: \renewcommand{\UrlFont}{\small\tt}
+#+BEAMER_HEADER: \renewcommand*{\UrlFont}{\footnotesize}
+#+BEAMER_HEADER: \tolerance=1000
+#+BEAMER_HEADER: \RequirePackage{fancyvrb}
+#+BEAMER_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize}
+#+BEGIN_EXPORT latex
+\addtobeamertemplate{block begin}{
+  \setlength{\parsep}{0pt}
+  \setlength{\topsep}{3pt plus 2pt minus 2.5pt}
+  \setlength{\itemsep}{0pt plus 0pt minus 2pt}
+  \setlength{\partopsep}{2pt}
+}
+#+END_EXPORT
+
+* Overview
+\vspace{-0.1in}
+Themes:
+\vspace{-0.05in}
+  - Seamless (as possible) transition from AIRS to CrIS for sounding products
+  - Put new emphasis on routine/fast processing of data subsets for validation and Level 3
+  - Alternative products for climate research (ROSES)
+  - \textcolor{gray}{Need top-down requirements on retrieval system with priorities clearly stated.}
+
+Goals:
+\vspace{-0.05in}
+  - Radiance data set that can support climate level trending that spans instruments (our ROSES proposal)
+  - Fix retrieval liens "up-front" if possible
+  - Create data sets that can be easily used by others
+  - \textcolor{gray}{Re-think product development in an era of declining resources.}
+
+* AIRS, CrIS Differences
+#+LaTeX: \vspace{-0.1in}
+- Instrument Line Shape (ILS): 
+   - CrIS: sinc
+   - AIRS: 2378 ILS's, about 75% in good shape
+- Footprints: roughly similar, some small issues
+- Orbits: sampling almost identical (later)
+- Noise: nominally similar
+- Calibration (later)
+
+** ILS Differences
+  :PROPERTIES:
+  :BEAMER_env: block
+  :END:
+\vspace{-0.05in}
+- Large in B(T)
+- Existing approach: Retrievals use different forward models
+- \textcolor{maroon}{Cannot inter-calibrate AIRS and CrIS with different ILS functions!} 
+- A hyperspectral radiance climatology requires same ILS between instruments
+
+\large Our approach: Convert AIRS to the CrIS ILS
+
+* Spectral Differences Among AIRS, CrIS, IASI
+
+#+ATTR_LATEX: :width 0.85\linewidth 
+[[./Figs/Pdf/hyperall_hamming.pdf]]
+
+* AIRS2CrIS Algorithm
+#+LaTeX: \vspace{-0.15in}
+#+LaTeX: \begin{small}
+- Simple deconvolution to 0.1 \wn grid
+- $S_a r = r_A$, $r_o = S_a^{-1} r_A$ using Moore-Penrose pseudoinverse
+- $r_{A2C} = S_c \circledast r_o$
+- Small additional terms using linear regression (mostly bias)
+- Errors below assume AIRS ILS functions are perfect
+#+LaTeX: \end{small}
+#+LaTeX: \vspace{-0.25in}
+** \footnotesize AIRS2CrIS Mean Error (std. similar)
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+#+LaTeX: \vspace{-0.1in}
+#+ATTR_LATEX: :width 0.95\linewidth 
+[[./Figs/Pdf/ap_decon_corr.pdf]]
+
+** \footnotesize AIRS2CrIS Noise
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+#+LaTeX: \vspace{-0.1in}
+#+ATTR_LATEX: :width 0.95\linewidth 
+[[./Figs/Pdf/a2cris_nedt.pdf]]
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: ignoreheading
+  :END:
+
+#+LaTeX: \vspace{-0.1in}
+\small Shortwave sounding region max noise dominated by CrIS
+
+* SNPP versus AIRS 
+\vspace{-0.3in}
+
+** \footnotesize 2016 SNOs
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.1in}
+#+ATTR_LATEX: :width \linewidth 
+[[./Figs/Pdf/snpp_vs_airs_sno.pdf]]
+
+** \footnotesize 2016 Random Comparisons
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.1in}
+#+ATTR_LATEX: :width \linewidth 
+[[./Figs/Pdf/snpp_vs_airs_stats.pdf]]
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: ignoreheading
+  :END:
+
+\small
+Sources for Differences
+\vspace{-0.05in}
+- Differential calibration AIRS modules
+- AIRS SRFs (widths and centroids)
+- Non-linearity: CrIS, AIRS?
+- etc.
+
+* SNPP vs NOAA20 CrIS (via AIRS Snos)
+\vspace{-0.1in}
+
+#+ATTR_LATEX: :width 0.65\linewidth 
+[[./sFigs/PDF/sno_march2018_snpp_minus_noaa20_with_c2_airs_ingrey.pdf]]
+
+\vspace{-0.1in}
+
+\small
+- /Preliminary/, NOAA20 CrIS non-linearity will be updated in July 2018
+- Connecting CrIS instruments together will be easier!
+- So far spatial, spectral, and sampling among CrIS instruments will be identical 
+
+* COMMENT SNPP versus AIRS \small (RHS: Gray is w/o \Delta secant correction)
+#+LaTeX: \addtocounter{framenumber}{-1}
+\vspace{-0.3in}
+
+** \footnotesize 2016 SNOs
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.1in}
+#+ATTR_LATEX: :width \linewidth 
+[[./Figs/Pdf/snpp_vs_airs_sno.pdf]]
+
+** \footnotesize 2016 Random Comparisons
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.1in}
+#+ATTR_LATEX: :width \linewidth 
+[[./tfigs/Pdf/snpp_vs_airs_stats_wo_secant_corr.pdf]]
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: ignoreheading
+  :END:
+
+\small
+Sources for Differences
+\vspace{-0.05in}
+- Differential calibration AIRS modules
+- AIRS SRFs (widths and centroids)
+- Non-linearity: CrIS, AIRS?
+- etc.
+
+* COMMENT Scene Variability of SNOs versus Statistical Subset
+
+\vspace{-0.3in}
+
+** \footnotesize SNO Locations
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+\vspace{0.1in}
+#+ATTR_LATEX: :width \linewidth 
+[[./tFigs/Png/hist_sno_march2016_lat.png]]
+
+** \footnotesize Random Locations
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+#+ATTR_LATEX: :width \linewidth 
+[[./Figs/Png/equal_area_hist.png]]
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: ignoreheading
+  :END:
+
+
+#+LaTeX: \small
+- Can examine single channel B(T) differences versus scene temperature
+- Generally flat with scene temperature, except near extremes (esp. hot scenes)
+
+* Data Processing Flow
+  :PROPERTIES:
+  :BEAMER_opt: label=flow
+  :END:
+#+LaTeX: \vspace{-0.1in}
+#+ATTR_LATEX: :width 0.64\linewidth 
+[[./Figs/Pdf/airs2cris_vx.pdf]]
+
+* Anomaly and Trend Approach
+
+Linear solution for trends with a-priori state = 0 given by,
+\begin{displaymath}
+\frac{dx}{dt} =  \left(K^T S_{\epsilon}^{-1} K + R^{-1}\right)^{-1} \left(K^T S_{\epsilon}^{-1} \frac{dBT}{dt}\right)
+\end{displaymath}
+
+- /x/ is the atmospheric state
+- /K/ are the B(T) Jacobians
+- $S_{\epsilon}$ is the observation error covariance matrix. 
+- /R/ combines empirical regularization (Tikonov L1-type) and the \emph{a-priori} covariance-based terms
+
+$S_\epsilon$ covariances represent inter-annual variability and instrument stability.  Provides signficiant constraints compared to L3 time derivatives.
+
+Jacobian state from standard all-sky retrievals or from re-analysis; high accuracy not needed.
+
+# \vspace{0.1in}
+
+# For anomalies replace $\frac{dx}{dt} \longrightarrow dx$, $\frac{dBT}{dt}  \longrightarrow d(BT)$
+
+* Time Series Length Nearing Climate Scales
+\vspace{-0.3in}
+
+** \footnotesize CLARREO Schematic: Our Uncertainty?
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+[[./pFigs/clarreo.pdf]]
+\vspace{0.1in}
+#+ATTR_LATEX: :width \linewidth 
+
+\footnotesize
+AIRS, CrIS, IASI are /all/ very stable
+
+** \footnotesize AIRS 14-Year global trends
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+#+ATTR_LATEX: :width \linewidth 
+[[./pFigs/1231and1566cm-1_dbt_uncertainty_vs_time_iasi_airs_2016_v2.pdf]]
+
+\footnotesize
+These are 2-\sigma B(T) statistical uncertainties due to inter-annual variability.  
+
+Some channels, some latitudes not gaussian (strat sudden warmings, QBO, etc.)
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: ignoreheading
+  :END:
+
+* Global B(T) Trend (hardest case)
+
+\vspace{-0.15in}
+#+ATTR_LATEX: :width 0.8\linewidth 
+[[./Figs/Pdf/airs_14year_global_trends.pdf]]
+
+\small
+Uncertain on fit vs specify \cd, \methane etc. trends. We have done both.
+
+Specifying OK for long-term trends.  
+
+* Example: 14-Year Zonal Temperature Trends
+
+\vspace{-0.1in}
+
+\small /NOTE larger color scale on left./
+
+\vspace{-0.1in}
+
+** \footnotesize From Level 3
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+#+ATTR_LATEX: :width \linewidth 
+[[./pFigs/final_l3_t.png]]
+
+** \footnotesize From Radiance Derivatives
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+#+ATTR_LATEX: :width \linewidth 
+[[./pFigs/final_umbc_t_zoom_cmap.png]]
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: ignoreheading
+  :END:
+
+
+Interannual variability (observation covariance) regularizes OE solution.
+
+Need to work on off-diagonal obs covariances to get uncertainties right.
+
+* Anomaly Example: Water Vapor (27N to 30N Latitude Zonal)
+\vspace{-0.35in}
+
+** \footnotesize From radiance anomaly 
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+\vspace{-0.1in}
+#+ATTR_LATEX: :width 0.8\linewidth 
+[[./calFigs/Png/water_lati_30_UMBC.png]]
+
+** \footnotesize ERA $\times$ Avg Kernel
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+\vspace{-0.1in}
+#+ATTR_LATEX: :width 0.8\linewidth 
+[[./calFigs/Png/water_lati_30_ERA.png]]
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: ignoreheading
+  :END:
+
+
+\vspace{-0.15in}
+** \footnotesize AIRS Level 3
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+\vspace{-0.1in}
+#+ATTR_LATEX: :width 0.8\linewidth 
+[[./calFigs/Png/water_lati_30_L3.png]]
+
+* Flow (implementation issues)
+
+#+LaTeX: \vspace{-0.5in}
+** 
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+#+ATTR_LATEX: :width 1.\linewidth 
+[[./Figs/Pdf/airs2cris_vx.pdf]]
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+
+#+LaTeX: \begin{minipage}[T]{\columnwidth} \vspace{0.15in} 
+\small
+- Need L1c at the DAAC!
+- How supply IASI L1c?
+- AIRS2CrIS: 3 hours/day, all scenes; store or on-the-fly?
+- Assume MERRA2 at the DAAC
+- Start with zonal
+- Then move to gridded products
+- TBD
+  - Zonal, grid sizes (fill from subset or full mission?)
+  - Subset sizes
+- \textcolor{maroon}{Red Box}: Use AIRS2CrIS for Level 2 record?
+#+LaTeX: \end{minipage}
+
+* AIRS2CrIS for Level 2 Retrievals?  (Summary)
+  :PROPERTIES:
+  :BEAMER_opt: shrink=25
+  :END:
+- Continuity requires adjusting for satellite differences
+  - Spectral (about 1000 channels remain)
+  - Radiometric
+  - Algorithm (RTA)
+  - Sampling
+- Most can be addressed with AIRS2CrIS
+  - Sampling a problem for cloud-clearing (CC)
+  - CrIS tighter FOV results in higher CC yield, effect?
+  - DOFs not that different with CrIS NSR vs FSR
+  - Single RTA, almost identical retrieval algorithm!  Less work!
+- Problems
+  - De-emphasize the short wave due to drifts, CrIS/IASI noise
+  - Note Saunders EUMETSAT slide (Joao's talk).  CrIS NSR placing slightly higher than AIRS at UKMO.
+  - Some minor gases better with native resolution (different processing?)
+  - New and different
+- Approach
+  - Initial testing with C. Barnet
+  - /Start with subsets for quick full-mission processing and L3 creation/
+      - Need to reprocess often to understand climate-level behavior of the system
+  - Differential CC yield goes away with single-footprint retrieval
+  - I hope we have a new set of users in the next 10 years looking at climate, we need to new approaches to be ready?
+
+* AIRS2CrIS for Level 2 Retrievals?  Issues
+Continuity requires adjusting for satellite differences
+  - Spectral (about 1000 channels remain)
+  - Radiometric
+  - Algorithm (RTA)
+  - Sampling
+* AIRS2CrIS for Level 2 Retrievals?  Benefits
+Most can be addressed with AIRS2CrIS
+  - Sampling a problem for cloud-clearing (CC)
+  - CrIS tighter FOV results in higher CC yield, effect?
+  - DOFs not that different with CrIS NSR vs FSR
+  - Single RTA, almost identical retrieval algorithm!  Less work!
+* AIRS2CrIS for Level 2 Retrievals?  Problems
+Problems
+  - De-emphasize the short wave due to drifts, CrIS/IASI noise
+  - Some minor gases better with native resolution (different processing?)
+  - Note Saunders EUMETSAT slide (Joao's talk).  CrIS NSR placing slightly higher than AIRS at UKMO.
+  - New and different
+* AIRS2CrIS for Level 2 Retrievals?  Approach
+Approach
+  - Initial testing with C. Barnet
+  - /Start with subsets for quick full-mission processing and L3 creation/
+      - Need to reprocess often to understand climate-level behavior of the system
+  - Differential CC yield goes away with single-footprint retrieval
+  - I hope we have a new set of users in the next 10 years looking at climate, we need to new approaches to be ready?

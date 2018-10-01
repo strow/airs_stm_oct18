@@ -1,0 +1,332 @@
+#+startup: beamer
+#+Options: toc:nil H:1
+#+LaTeX_CLASS_OPTIONS: [10pt,t]
+#+TITLE: \large Connecting AIRS and CrIS: Radiometric, Spectral, and Spatial Results
+#+BEAMER_HEADER: \subtitle{\footnotesize{AIRS Science Team Meeting}}
+#+BEAMER_HEADER: \date{\vspace{0.1in}\footnotesize{April 27, 2018 \vfill}}
+#+BEAMER_HEADER: \author{L. Larrabee Strow\inst{1,2}, Howard Motteler\inst{2}, Chris Hepplewhite\inst{2}, Steven Buczkowski\inst{2}, and Sergio De-Souza Machado\inst{1,2}}
+#+BEAMER_HEADER: \institute[UMBC]{\inst{1} UMBC Physics Dept. \and \inst{2}UMBC JCET}
+#+BEAMER_HEADER: \input beamer_setup
+#+BEAMER_HEADER: \usetheme{metropolis}
+#+BEAMER_HEADER: \metroset{titleformat title=allcaps}
+#+BEAMER_HEADER: \renewcommand{\UrlFont}{\small\tt}
+#+BEAMER_HEADER: \renewcommand*{\UrlFont}{\footnotesize}
+#+BEAMER_HEADER: \tolerance=1000
+#+BEAMER_HEADER: \RequirePackage{fancyvrb}
+#+BEAMER_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize}
+#+BEGIN_EXPORT latex
+\addtobeamertemplate{block begin}{
+  \setlength{\parsep}{0pt}
+  \setlength{\topsep}{3pt plus 2pt minus 2.5pt}
+  \setlength{\itemsep}{0pt plus 0pt minus 2pt}
+  \setlength{\partopsep}{2pt}
+}
+#+END_EXPORT
+
+* Overview
+
+A Hyperspectral IR Climate Record Depends on Sensor Continuity
+
+- Spectral :: Large differences between AIRS, CrIS, IASI
+- Radiometric :: Differences in the 0.3K or less range, which is a great starting point.
+- Spatial :: AIRS footprint slightly smeared relative to CrIS, slight impact on extrema
+
+
+We explore here the differences between AIRS, SNPP CrIS, and NOAA20 CrIS
+
+\vspace{0.1in}
+
+Results for NOAA20 CrIS (J1) are /preliminary/.  Calibration of NOAA20 will likely be updated in the July time-frame.
+
+
+* *Spectral*
+
+- Wednesday's presentation focused on AIRS2CrIS algorithm/product.
+- Emphasize that we need AIRS L1c product at the DAAC for production of AIRS2CrIS products.
+- Present approach: standardize on CrIS normal spectral resolution (NSR) for radiometric climate record.
+- Conversion of IASI2CrIS is essentially trivial since IASI L1c gaussian apodization is far from zero at 0.8 cm path difference, so conversion to 0.8 sinc ILS is robust.
+
+* *Radiometric*
+
+- Do we need to have similar noise levels for AIRS2CrIS and CrIS if used for Level 2 retrievals?  Should that be incorporated into a AIRS2CrIS product?
+
+- Use a combination of SNOs and large statistical inter-comparisons to determine radiometric differences between sensors, but they agree quite well.  This is important!
+
+- SNOs are heavily weighted to high latitudes.  
+
+- Large statistical inter-comparisons allow examination of scene dependence differences among sensors, better statistics.
+
+
+* SNPP versus AIRS
+#+LaTeX: \addtocounter{framenumber}{-1}
+\vspace{-0.3in}
+
+** \footnotesize 2016 SNOs
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.1in}
+#+ATTR_LATEX: :width \linewidth 
+[[./Figs/Pdf/snpp_vs_airs_sno.pdf]]
+
+** \footnotesize 2016 Random Comparisons
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.1in}
+#+ATTR_LATEX: :width \linewidth 
+[[./Figs/Pdf/snpp_vs_airs_stats.pdf]]
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: ignoreheading
+  :END:
+
+\footnotesize
+\vspace{-0.08in}
+- Both approaches show extreme shortwave CrIS ~0.1K higher than AIRS (they agree in longwave window)
+- 2200 \wn SNOs vs Random do not agree, different by ~0.1K
+- Hash is likely frequency or width issues with AIRS
+- We will attempt to model this and fix by changing AIRS ILS functions (including entrance filter fringe positions)
+
+* SNPP versus AIRS \small (RHS: Gray is w/o \Delta secant correction)
+#+LaTeX: \addtocounter{framenumber}{-1}
+\vspace{-0.3in}
+
+** \footnotesize 2016 SNOs
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.1in}
+#+ATTR_LATEX: :width \linewidth 
+[[./Figs/Pdf/snpp_vs_airs_sno.pdf]]
+
+** \footnotesize 2016 Random Comparisons
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.1in}
+#+ATTR_LATEX: :width \linewidth 
+[[./tfigs/Pdf/snpp_vs_airs_stats_wo_secant_corr.pdf]]
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: ignoreheading
+  :END:
+
+\footnotesize
+\vspace{-0.08in}
+- Both approaches show extreme shortwave CrIS ~0.1K higher than AIRS (they agree in longwave window)
+- 2200 \wn SNOs vs Random do not agree, different by ~0.1K
+- Hash is likely frequency or width issues with AIRS
+- We will attempt to model this and fix by changing AIRS ILS functions (including entrance filter fringe positions)
+
+* CrIS - AIRS:  Longwave + Midwave
+
+#+ATTR_LATEX: :width 0.85\linewidth 
+[[./Figs/Pdf/snpp_vs_airs_stats_lwmw.pdf]]
+
+* CrIS - AIRS:  \methane Region, \nu Errors Still Present
+
+#+ATTR_LATEX: :width 0.85\linewidth 
+[[./Figs/Pdf/snpp_vs_airs_stats_ch4_nu_error.pdf]]
+
+* CrIS - AIRS:  Longwave
+
+#+ATTR_LATEX: :width 0.85\linewidth 
+[[./Figs/Pdf/snpp_vs_airs_stats_lw.pdf]]
+
+* CrIS - AIRS:  Longwave M11 and M12
+
+#+ATTR_LATEX: :width 0.85\linewidth 
+[[./Figs/Pdf/snpp_vs_airs_stats_lw_m11m12.pdf]]
+
+* CrIS - AIRS:  667 \wn Q-branch \nu Errors Still Present
+
+#+ATTR_LATEX: :width 0.85\linewidth 
+[[./Figs/Pdf/snpp_vs_airs_stats_lw_667_nu_error.pdf]]
+
+* CrIS - AIRS Summary
+
+Determine if AIRS ILS functions need adjustment:
+
+- First, apply exact \nu calibration to L1c (easy, just didn't do it)
+- ~8 \wn "fringes" in CrIS-AIRS.  Entrance filter fringe shifts?
+- Try ILS changes that are within estimated TVAC errors
+- Then, apply as offsets in AIRS2CRIS
+- \textcolor{maroon}{Testing does NOT require RTA calculations!}  AIRS ILS functions embedded in AIRS2CrIS algorithm.
+
+Test via Linear trends computed two ways:
+    1. dB(T)/dt AIRS2CrIS (10-year set)
+    2. dB(T)/dt AIRS2CrIS: 5 years + CrIS: next 5 years 
+
+* SNPP CrIS versus NOAA20 CrIS
+\vspace{-0.1in}
+
+\small
+- /Preliminary/: NOAA20 non-linearity estimation done quickly
+- Will be updated in July
+- AIRS SNOs versus SNPP/NOAA20 CrIS are *invaluable*, since direct SNOs don't really exist except at very high latitudes
+
+#+ATTR_LATEX: :width 0.65\linewidth 
+[[./sFigs/PDF/sno_march2018_snpp_minus_noaa20_with_c2_airs_ingrey.pdf]]
+
+* Zoom to SNPP CrIS - NOAA20 CrIS
+
+
+
+\vspace{-0.3in}
+** Double Difference SNOs
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.60
+  :END:
+
+#+ATTR_LATEX: :width \linewidth 
+[[./sFigs/Pdf/sno_march2018_snpp_minus_noaa20_lw_mw_sw.pdf]]
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+\vspace{-0.0in}
+
+\hspace*{-0.15in}
+#+LaTeX: \begin{minipage}[T]{\columnwidth}
+\small
+- AIRS2CrIS used CrIS FSR, so shortwave bad, but "OK" for large averages in window regions
+- Slight remnants of bad AIRS channels?
+- Averaging over 9 FOVs for both CrIS's
+- Scene dependence may help separate ICT diffs from non-linearity (same ICT temperature for both CrIS's)
+#+LaTeX: \end{minipage}
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: ignoreheading
+  :END:
+
+\small
+
+\textcolor{maroon}{A third-party sensor can be used to connect two instruments that don't overlap in time, if sensors are stable!}
+
+We have now done this with (IASI/AIRS/CrIS) and (AIRS/SNPP CrIS/J1 CrIS)
+
+* Scene Dependence with SNOs: 900 \wn channel
+\vspace{-0.35in}
+** All SNOs
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+#+ATTR_LATEX: :width \linewidth 
+[[./sFigs/Pdf/sno_march2018_snpp_minus_noaa20_900cmbt_vs_btobs.pdf]]
+
+** Only SNO Double Diffs
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+#+ATTR_LATEX: :width \linewidth 
+[[./sFigs/Pdf/sno_march2018_snpp_minus_noaa20_900cmbt_vs_btobs_just_diffs.pdf]]
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: ignoreheading
+  :END:
+
+\small
+- CrIS hotter at high B(T): better scene is larger sample (SNPP vs AIRS)
+- SNPP vs NOAAA20 roughly within statistical error bounds
+
+* Look for CrIS Non-Linearity
+
+\small
+- Non-linearity higher in extreme longwave, examine 700 \wn B(T)
+- B(T) 900 \wn reasonable proxy for integrated detector signal
+- SNPP, NOAA20 CrIS's /are/ different!
+
+#+ATTR_LATEX: :width 0.7\linewidth 
+[[./sFigs/Pdf/sno_march2018_snpp_minus_noaa20_700cmbt_vs_900cmbt_v1.pdf]]
+
+* Radiometric Differences: Conclusions
+
+- We are looking at very small radiometric differences between all instruments
+- Instruments all appear very stable, so these differences can be account for
+- If we have enough overlap (true so far) the uncertainty in instrument differences is /very/ small, maybe <0.03K?
+- Over 5-years that is <0.01K.
+
+* *Spatial*
+
+H. Aumann: standard deviation between adjacent CrIS scenes is 12% larger than between AIRS adjacent scenes.  
+
+- Maybe be very relevant for cloud-clearing.  C. Barnet and A. Gambacorta verify larger CC yield for CrIS.
+- What does this mean for Level 3 sampling differences between AIRS and CrIS?
+- AIRS2CrIS won't fix this.  Should be relatively unimportant for single-footprint retrievals.
+
+We examine statistical differences between SNPP-CrIS and AIRS as a function of scene temperature to look for spatial effects.
+
+* AIRS vs CrIS Window Channel PDF (ocean)
+#+LaTeX: \vspace{-0.15in}
+#+ATTR_LATEX: :width 0.7\textwidth
+[[./pdf1.pdf]]
+#+LaTeX: \vspace{-0.15in} \footnotesize
+- 902 \wn channel
+- All random for 2015 for tropical ocean day
+- Difference are 10X.  CrIS hotter than AIRS near hot PDF edge
+- AIRS is smearing small clouds in nearly clear scenes relative to CrIS
+
+* Crude Test to Examine Smearing
+#+LaTeX: \vspace{-0.15in}
+#+ATTR_LATEX: :width 0.7\textwidth
+[[./pdf2.pdf]]
+#+LaTeX: \vspace{-0.15in} \footnotesize
+- Adjacent cross-track FOVs (xFOV) for CrIS collected
+- 0.1 Smear means FOV radiance = FOV*0.8 + (xFOV1)*0.1 + (xFOV2)*0.1
+- 0.2 Smear uses [0.6 0.2 0.2] instead of [0.8 0.1 0.1]
+- NOT quantitative, looking at direction of change
+
+* COMMENT PDF smear as Percent (per Bin)
+** Figure
+:PROPERTIES:
+:BEAMER_col: 0.60
+:END:
+#+LaTeX: \vspace{-0.45in}
+#+ATTR_LATEX: :width 1.05\textwidth
+[[./Figsx/Pdf/pdf900wn_smear_tropics_ocean_delta_percent.pdf]]
+** Text
+:PROPERTIES:
+:BEAMER_col: 0.50
+:END:
+#+LaTeX: \vspace{-0.15in} \footnotesize
+- Absolute peak of difference near 296.5K is -3%
+- AIRS sees more cold scenes until about 240K
+- Then as high clouds get smaller? CrIS sees more scenes?
+- Below 220K, AIRS has more scenes?  Radiometric?
+- Smearing of 0.2 no good below ~220K
+
+** 
+These results are still using nadir only, and they have large time
+differences between AIRS and CrIS
+
+* Zoom of PDF of AIRS vs CrIS as Percent (Global Ocean)
+#+LaTeX: \vspace{-0.15in}
+#+ATTR_LATEX: :width 0.7\textwidth
+[[./allx_ocean_global_pdf_pcdiff.png]]
+
+- Larger dataset
+- Area-weighted
+
+* Dedication:  *Anna Belle, Born: ~2008 Died: April 17, 2018*
+
+#+ATTR_LATEX: :width 0.95\linewidth 
+[[./Figs/Pdf/anabelle.jpg]]
+
+
