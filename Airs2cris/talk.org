@@ -22,6 +22,52 @@
 }
 #+END_EXPORT
 
+* Introduction
+\vspace{-0.2in}
+#+ATTR_LATEX: :width 1.0\linewidth 
+[[./Figs/Pdf/airs2cris_stm_talk1_landscape_v2.pdf]]
+
+** CHIRP: (Common or Climate) Hyperspectral InfraRed Product
+
+- OPD: :: 0.8 / 0.6 /0.4 cm
+- Spectral Spacing: :: 0.0625 / 0.0833 / 0.1250 \wn
+
+* Why CHIRP
+  :PROPERTIES:
+  :Beamer_opt: shrink=5
+  :END:
+
+
+\vspace{-0.2in}
+
+- Convert AIRS, CrIS, IASI to a common spectral spectral response function
+  (SRF)
+- Correct for instrumental radiance offsets
+- Provides long-term radiance continuity over different instruments
+- Allows use of a single forward model (Radiative Transfer Algorithm) for
+  retrievals
+- Common SRF for AIRS/CrIS and IASI (1:30 and 9:30 equator crossings)
+- Applications
+   - Gridded (time/space) radiance products (“L1G”)
+   - Geophysical retrievals (anomalies, trends) directly from all-sky radiance  anomaly/trends.  (See talk by L. Strow)
+- OLR trends directly from radiance trend retrievals (See talk by Sergio
+  DeSouza-Machado)
+- Use for Level 2 retrievals?  Only way to mitigate radiance calibration
+  difference among instruments and to achieve common sensitivity (both for
+  radiances and RTA)
+
+
+
+
+
+
+* CHIRP Data Flow
+\vspace{-0.1in}
+
+#+ATTR_LATEX: :width 0.6\linewidth 
+[[./Figs/Pdf/airs2cris_stm_talk1_small.pdf]]
+
+
 * COMMENT Text left, graph right
 \vspace{-0.2in}
 
