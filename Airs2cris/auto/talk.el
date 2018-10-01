@@ -43,6 +43,8 @@
     "capt-of"
     "hyperref"
     "fancyvrb")
+   (LaTeX-add-xcolor-definecolors
+    "mAlert")
    (LaTeX-add-fancyvrb-environments
     '("verbatim" "Verbatim")))
  :latex)
