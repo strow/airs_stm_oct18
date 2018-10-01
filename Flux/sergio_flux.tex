@@ -14,6 +14,9 @@
 \usepackage{capt-of}
 \usepackage{hyperref}
 
+%\newcommand{\nitrous}{N$_2$O\xspace}
+%\newcommand{\ozone}{O$_3$\xspace}
+
 \input beamer_setup
 
 \usetheme{default}
@@ -63,13 +66,18 @@
   \item If there was no atmosphere, then surface heated by sun (or eg nuclear energy within)
   \item Power radiated out to space would simply be $P/A = OLR = \sigma T_{surf}^4$ 
   \item However there are clouds and atmospheric gases, transporting heat and moisture globally
-  \item Rough numbers (1) $ <T_{surf}> = 285 K, <T_{UA}> = 255 K$ greenhouse effect
-  \item Rough numbers (2) Tropical atmosphere $T_{surf}$ = 299.7 K, BT1231 = 296.3 K \newline
-    \textcolor{blue}{\cd 15 \um band (Planck peak), BT $\sim$ 250 K or less} \newline
-    \textcolor{blue}{\water Far-IR  BT is also pretty low} \newline
-    \textcolor{red}{Outgoing Longwave Radiation $\ll$ radiated by surface}
-  \item Rough numbers (3) Incoming TOA solar = 1360 W/m2; cross section = 340 W/m2; albedo = 0.3;
+  \item \textcolor{blue}{\cd 15 \um band (Planck peak), BT $\sim$ 250 K or less} \newline
+        \textcolor{blue}{\water Far-IR  BT is also pretty low} \newline
+        \textcolor{red}{Outgoing Longwave Radiation $\ll$ radiated by surface}  
+  \item Rough numbers
+    \begin{small}
+    \begin{itemize}
+    \item Tropical atmosphere $T_{surf}$ = 299.7 K, BT1231 = 296.3 K
+    \item $<T_{surf}> = 285 K, <T_{UA}> = 255 K$ greenhouse effect
+    \item  Incoming TOA solar = 1360 W/m2; cross section = 340 W/m2; albedo = 0.3;
         so nominally need 238 W/m2 OLR
+    \end{itemize}
+    \end{small}    
   \end{itemize}
 \end{frame}
 % ---------------------------------------------------------------------
@@ -110,7 +118,7 @@
 
   \hspace{0.50in} TOA BT1231 \hspace{1.75in} Fluxes \\
   \begin{center}
-    \dlandgraph{0.55}{Figs/generic_BT1231_vs_lat.pdf}{Figs/generic_olr_vs_lat.pdf}
+    \dlandgraph{0.48}{Figs/generic_BT1231_vs_lat.pdf}{Figs/generic_olr_vs_lat.pdf}
   \end{center}
 
   \begin{itemize}
@@ -186,48 +194,32 @@
 \end{frame}
 % ---------------------------------------------------------------------
 \begin{frame}
-  \frametitle{Clear Sky Flux Jacobians}
-  Changes are 2002/2003 to 2016/2017
+  \frametitle{ERA Clear Sky Flux Jacobians: Total 15 Years}
+  \vspace{-0.1in}
   \begin{center}
-    \noindent\includegraphics[width=0.5\linewidth]{Figs//clrsky_temp_gas_fluxjacs.pdf}
+    \noindent\includegraphics[width=0.75\linewidth]{clrskly_temp_gas_fluxjacs_lls.pdf}
   \end{center}
+  \vspace{-0.1in}
   \begin{itemize}
-  \item \cd (magenta),\water (cyan) increased, so flux is trapped
-  \item surface, atmospheric temperatures (green and red) have also increased (more emission)
-  \item so net change (BLUE with circles) is the combo of the above
+  \item Lowered flux by \cd and \water
+  \item Increase flux by Tsurf and T(z), \ozone small change
+  \item Net change is variable except large in N. Polar regions
   \end{itemize}
 \end{frame}
 % ---------------------------------------------------------------------
 \begin{frame}
-  \frametitle{All Sky Flux Jacobians}
-  Changes are 2002/2003 to 2016/2017  \newline
+  \frametitle{ERA All Sky Flux Jacobians : Total 15 Years}
+  \vspace{-0.1in}  
   \begin{center}
-    \noindent\includegraphics[width=0.675\linewidth]{Figs//allsky_cloud_fluxjacs.pdf}
+    \noindent\includegraphics[width=0.75\linewidth]{Figs//allsky_cloud_fluxjacs.pdf}
   \end{center}
-  Bulk of OLR tropical increase due to ERA ice cloud fraction!
-\end{frame}
-% ---------------------------------------------------------------------
-% ---------------------------------------------------------------------
-\section{Flux Changes by RRTM bands : ERA clouds}
-% ---------------------------------------------------------------------
-% ---------------------------------------------------------------------
-\begin{frame}
-  \frametitle{Flux Changes by RRTM bands}
-  RED means MORE flux (W/m2) in 2017/2018 \newline
-  \hspace{0.50in} Clear Sky  \hspace{1.75in} All Sky \\
-  \begin{center}
-    \dlandgraph{0.5}{Figs/spectral_deltaolr_vs_lat_thermo_gases.png}{Figs/spectral_deltaolr_vs_lat_thermo_gases_clouds.png}
-  \end{center}
-
-  \begin{small}
-    \begin{itemize}
-    \item \textcolor{red}{fix all this, loooks wrong}
-    \item LH panel, can see in 15 um band the change is red
-    \item LH panel, can see more clr sky flux coming out in Southern Polar Regions in thermal window
-    \item RH panel, more flux coming out in tropical window region in 2002
-    \item RH panel, can see topical WV region had more flux emitted in 2002
-    \end{itemize}
-  \end{small}
+  \vspace{-0.1in}
+  \begin{itemize}
+  \item (ERA) OLR tropical decrease due to ice cloud fraction!
+  \item Not shown : flux jacobians for water clouds (typically much smaller than cirrus flux jacs)
+  \end{itemize}
+  
+  
 \end{frame}
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
@@ -235,59 +227,60 @@
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
 \begin{frame}
+  \frametitle{\textcolor{red}{\bf Comparison to CERES L3 rates}}
+  Use Larrabee's spectral rate retrievals (cloud/thermodynamic) from previous talk;
+  plug in CO2 changes over 15 years (2.2 ppmv/yr) and run through RRTM  
+  \begin{center}
+    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_vs_ceres_fluxrates.pdf}
+  \end{center}
+ Errorbars : TBD for next AIRS STM
+\end{frame}
+
+\begin{frame}
   \frametitle{Flux Changes by RRTM bands}
-  Larrabee ran off spectral rates and OEM retrievals, plus into RRTM
-  RED means MORE flux (W/m2) in 2017/2018 \newline
+  Larrabee ran off spectral rates and OEM retrievals; enter resulting cloud and thermodynamic trends into RRTM \newline
+  Red/Yellow means MORE flux (W/m2) in 2017/2018 \newline
   \begin{center}
     \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_vs_band_fluxrates.png}
   \end{center}
 \end{frame}
-% ---------------------------------------------------------------------
-\begin{frame}
-  \frametitle{Comparison to CERES L3 rates}
-  \begin{center}
-    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_vs_ceres_fluxrates.pdf}
-  \end{center}
- Guess we need errorbars .... TBD for next AIRS STM
-\end{frame}
 
 \begin{frame}
-  \frametitle{Breakdown of changes 1}
+  \frametitle{Breakdown of changes 1 : OLR}
 %  \begin{center}
 %    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_total_vs_atm_vs_GHG.pdf}
 %  \end{center}
   \hspace{0.50in} Clouds/Atmos/GHG  \hspace{1.5in} Ind. Gases \\
   \begin{center}
-    \dlandgraph{0.5}{Figs/umbc_total_vs_atm_vs_GHG.png}{Figs/umbc_total_vs_atm_vs_GHG2.png}
+    \dlandgraph{0.48}{Figs/umbc_total_vs_atm_vs_GHG.png}{Figs/umbc_total_vs_atm_vs_GHG2.png}
   \end{center}
-
- Guess we need errorbars .... TBD for next AIRS STM
+ Errorbars : TBD for next AIRS STM \newline
+ Total = Cloud/Atm/GHG where \newline
+ \textcolor{blue}{Cloud=}Water+Ice, \textcolor{blue}{GHG=}\cd,\methane,\nitrous, \textcolor{blue}{Atm=}SurfTemp,T,\water,\ozone
 \end{frame}
 
 \begin{frame}
-  \frametitle{Breakdown of changes 2}
+  \frametitle{Breakdown of changes 2A : Spectral Flux}
 %  \begin{center}
 %    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_total_vs_atm_vs_GHG.png}
 %  \end{center}
   \hspace{0.50in} WV  \hspace{1.5in} CO2 \\
   \begin{center}
-    \dlandgraph{0.5}{Figs/umbc_wvonly_spectralfluxchange.png}{Figs/umbc_co2only_spectralfluxchange.png}
+    \dlandgraph{0.48}{Figs/umbc_wvonly_spectralfluxchange.png}{Figs/umbc_co2only_spectralfluxchange.png}
   \end{center}
-
- Guess we need errorbars .... TBD for next AIRS STM
+ Errorbars : TBD for next AIRS STM
 \end{frame}
 
 \begin{frame}
-  \frametitle{Breakdown of changes 3}
+  \frametitle{Breakdown of changes 2B : Spectral Flux}
 %  \begin{center}
 %    \noindent\includegraphics[width=0.625\linewidth]{Figs/umbc_total_vs_atm_vs_GHG.png}
 %  \end{center}
   \hspace{0.50in} Surf. Temp  \hspace{1.5in} Atm. Temp \\
   \begin{center}
-    \dlandgraph{0.5}{Figs/umbc_STonly_spectralfluxchange.png}{Figs/umbc_Tonly_spectralfluxchange.png}
+    \dlandgraph{0.48}{Figs/umbc_STonly_spectralfluxchange.png}{Figs/umbc_Tonly_spectralfluxchange.png}
   \end{center}
-
- Guess we need errorbars .... TBD for next AIRS STM
+ Errorbars : TBD for next AIRS STM
 \end{frame}
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
@@ -310,6 +303,32 @@
 \end{frame}
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
+
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+\section{Extra Slides : Flux Changes by RRTM bands : ERA clouds}
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+\begin{frame}
+  \frametitle{Flux Changes by RRTM bands}
+  RED means MORE flux (W/m2) in 2017/2018 \newline
+  \hspace{0.50in} Clear Sky  \hspace{1.75in} All Sky \\
+  \begin{center}
+    \dlandgraph{0.48}{Figs/spectral_deltaolr_vs_lat_thermo_gases.png}{Figs/spectral_deltaolr_vs_lat_thermo_gases_clouds.png}
+  \end{center}
+
+  \begin{small}
+    \begin{itemize}
+    \item \textcolor{red}{fix all this, loooks wrong}
+    \item LH panel, can see in 15 um band the change is red
+    \item LH panel, can see more clr sky flux coming out in Southern Polar Regions in thermal window
+    \item RH panel, more flux coming out in tropical window region in 2002
+    \item RH panel, can see topical WV region had more flux emitted in 2002
+    \end{itemize}
+  \end{small}
+\end{frame}
+
+
 \end{document}
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
