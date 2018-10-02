@@ -2,7 +2,7 @@
 #+Options: toc:nil H:1
 #+LaTeX_CLASS_OPTIONS: [10pt,t]
 #+TITLE: \large A Climate Hyperspectral InfraRed Product (CHIRP)
-#+BEAMER_HEADER: \date{\textit{\footnotesize June 20, 2018}}
+#+BEAMER_HEADER: \date{\textit{\footnotesize October 2, 2018}}
 #+BEAMER_HEADER: \input beamer_setup
 #+BEAMER_HEADER: \usetheme{metropolis}
 #+BEAMER_HEADER: \metroset{titleformat title=allcaps}

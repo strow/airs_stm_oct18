@@ -1,4 +1,4 @@
-% Created 2018-10-02 Tue 01:53
+% Created 2018-10-02 Tue 13:08
 % Intended LaTeX compiler: pdflatex
 \documentclass[10pt,t]{beamer}
 \usepackage[utf8]{inputenc}
@@ -20,7 +20,7 @@
 \title{\large AIRS Plus CrIS/IASI Multi-Decadal Trends and Anomalies with Full Spatial Sampling and Rigorous Error Characterization}
 \subtitle{\footnotesize{AIRS Science Team Meeting}}
 \date{\vspace{0.1in}\footnotesize{October 3, 2018 \vfill}}
-\author{L. Larrabee Strow\inst{1,2}, Sergio De-Souza Machado\inst{1,2}, Steven Leroy\inst{3}, Howard Motteler\inst{2}, Chris Hepplewhite\inst{2}, and Steven Buczkowski\inst{2}}
+\author{L. Larrabee Strow\inst{1,2}, Sergio DeSouza--Machado\inst{1,2}, Steven Leroy\inst{3}, Howard Motteler\inst{2}, Chris Hepplewhite\inst{2}, and Steven Buczkowski\inst{2}}
 \institute[UMBC]{\inst{1} UMBC Physics Dept. \and \inst{2}UMBC JCET \and \inst{3} AER}
 \input beamer_setup
 \usetheme{metropolis}
@@ -35,7 +35,7 @@
  pdftitle={\large AIRS Plus CrIS/IASI Multi-Decadal Trends and Anomalies with Full Spatial Sampling and Rigorous Error Characterization},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 25.1.1 (Org mode 9.1.12)}, 
+ pdfcreator={Emacs 25.3.1 (Org mode 9.1.12)}, 
  pdflang={English}}
 \begin{document}
 
@@ -47,12 +47,25 @@
   \setlength{\partopsep}{2pt}
 }
 
-\begin{frame}[shrink=20,label={sec:orgc51264c}]{Overview:  Two Products Proposed}
+\begin{frame}[label={sec:orgb320419}]{Motivation}
+\begin{itemize}
+\item Produce Level 3 climate-level products with the most simple algorithm possible
+\item Minimize sensitivity to a-priori estimates, etc.
+\item Remove artificial sampling biases
+\item Perform as much analysis in radiance space for error traceability
+\end{itemize}
+
+We concentrate on Level 3 anomalies and trends, which are one main data types used for climate research.\\
+\vspace{0.15in}
+This approach is very simple and quick, so that re-processing of the complete record can be done over and over, allowing rigorous testing of assumptions and algorithm approaches, and quick re-processing if the radiance calibration changes.
+\end{frame}
+
+\begin{frame}[shrink=20,label={sec:org06d3c5c}]{Overview:  Two Products Proposed}
 \vspace{-0.1in}
 \begin{block}{(1) Multi-Instrument Hyperspectral Radiance Climate Time Series}
 \begin{itemize}
 \item 1:30 Orbit: AIRS + CrIS, 9:30 Orbit: IASI
-\item Convert to common ILS to allows inter-instrument radiance calibration
+\item Convert to common ILS to facilitate inter-instrument radiance calibration
 \item Emphasizes routine/fast processing of data for extensive testing
 \item Produce time/space grids of radiance time series and anomalies for climate analysis
 \end{itemize}
@@ -61,7 +74,7 @@
 \begin{block}{(2) Level 3 Geophysical Products}
 \begin{itemize}
 \item Generate geophysical (T/Q, etc.) "Level 3" anomaly time series and trends from radiance trends and anomailes
-\item This approach reduces influence of a-priori and allows better error estimation?
+\item This approach reduces influence of the a-priori and allows better error estimation?
 \item May include well established microwave radiance products in retrievals
 \end{itemize}
 \end{block}
@@ -76,7 +89,7 @@
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:org2419427}]{Time Series Length Nearing Climate Scales}
+\begin{frame}[label={sec:orgf70045d}]{Time Series Length Nearing Climate Scales}
 \vspace{-0.3in}
 
 \begin{columns}
@@ -106,7 +119,7 @@ Some channels, some latitudes not gaussian (strat sudden warmings, QBO, etc.)
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org5837a87}]{CHIRB Processing Flow}
+\begin{frame}[label={sec:org50ab6da}]{CHIRB Processing Flow}
 \vspace{-0.2in}
 \begin{center}
 \includegraphics[width=1.0\linewidth]{./airs2cris_stm_talk2_landscape.pdf}
@@ -119,14 +132,14 @@ CHIRB: (Common or Climate) Hyperspectral InfraRed Basis
 0.0625 / 0.0833  /  0.1250
 \end{frame}
 
-\begin{frame}[label={sec:orga6ca73e}]{Time/Space Gridded Radiance Data Flow}
+\begin{frame}[label={sec:org18b8496}]{Time/Space Gridded Radiance Data Flow}
 \vspace{-0.1in}
 \begin{center}
 \includegraphics[width=0.6\linewidth]{./airs2cris_stm_talk2_small.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org5dfe0c4}]{Anomaly and Trend Approach}
+\begin{frame}[label={sec:orga73479f}]{Anomaly and Trend Approach}
 Linear solution for trends with a-priori state = 0 given by,
 \begin{displaymath}
 \frac{dx}{dt} =  \left(K^T S_{\epsilon}^{-1} K + R^{-1}\right)^{-1} \left(K^T S_{\epsilon}^{-1} \frac{dBT}{dt}\right)
@@ -139,12 +152,12 @@ Linear solution for trends with a-priori state = 0 given by,
 \item \emph{R} combines empirical regularization (Tikonov L1-type) and the \emph{a-priori} covariance-based terms
 \end{itemize}
 
-\(S_\epsilon\) covariances represent inter-annual variability and instrument stability.  Provides signficiant constraints compared to L3 time derivatives.
+\(S_\epsilon\) covariances represent inter-annual variability and instrument stability.  They introduce significant constraints compared to L3 time derivatives.
 
 Jacobian state from standard all-sky retrievals or from re-analysis; high accuracy not needed.
 \end{frame}
 
-\begin{frame}[shrink=20,label={sec:org93c6f91}]{MERRA2, ERA, etc}
+\begin{frame}[shrink=20,label={sec:org34a5c22}]{MERRA2, ERA, etc  (an aside)}
 \begin{itemize}
 \item Barnet's CLIMCAPS will use MERRA-2 as a-priori
 \item My understanding is that MERRA-2 will be embedded in the CLIMAPS products
@@ -168,7 +181,7 @@ Jacobian state from standard all-sky retrievals or from re-analysis; high accura
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:orge052ea3}]{Data Used for Preliminary Results}
+\begin{frame}[label={sec:org7860f21}]{Data Used for Preliminary Results}
 \begin{itemize}
 \item Start with a \textasciitilde{}1\% random, area-weighted subset (for quick processing)
 \item Produce 40 area weighted zonal bins
@@ -184,7 +197,7 @@ Long-term: 16 day bins using 3x5 degree grids derived from all data (not from ju
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:orgf6b0bcd}]{Global B(T) Trend (Area Weighted)}
+\begin{frame}[label={sec:org9daff1c}]{Global B(T) Trend (Area Weighted)}
 \vspace{-0.15in}
 \begin{center}
 \includegraphics[width=0.7\linewidth]{./oFigs/airs_14year_global_trends.pdf}
@@ -197,7 +210,7 @@ Long-term: 16 day bins using 3x5 degree grids derived from all data (not from ju
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org467c2c2}]{Retrieved Zonal Trends (T/\water/T\(_{\text{surf}}\))}
+\begin{frame}[label={sec:org4b12167}]{Retrieved Zonal Trends (T/\water/T\(_{\text{surf}}\))}
 \vspace{-0.35in}
 
 \begin{columns}
@@ -247,7 +260,7 @@ Long-term: 16 day bins using 3x5 degree grids derived from all data (not from ju
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org11e0b32}]{Retrieved \ozone, Clouds}
+\begin{frame}[label={sec:orgf65cafd}]{Retrieved \ozone, Clouds}
 \vspace{-0.35in}
 
 \begin{columns}
@@ -296,7 +309,7 @@ Long-term: 16 day bins using 3x5 degree grids derived from all data (not from ju
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orgca880d6}]{Stratopsheric Ozone Trend Inter-Comparisons}
+\begin{frame}[label={sec:orgbd70fea}]{Stratopsheric Ozone Trend Inter-Comparisons}
 \vspace{-0.15in}
 \begin{block}{\footnotesize Ball et. al., ACP (2018)}
 \vspace{-0.1in}
@@ -330,7 +343,7 @@ Long-term: 16 day bins using 3x5 degree grids derived from all data (not from ju
 \end{columns}
 \end{frame}
 
-\begin{frame}[shrink=10,label={sec:orgcfa8e1d}]{Trend Uncertainties: Only Diagonal Meas. Error Covariance}
+\begin{frame}[shrink=10,label={sec:org9f175ae}]{Trend Uncertainties: Only Diagonal Meas. Error Covariance}
 \vspace{-0.1in}
 \small
 
@@ -367,7 +380,7 @@ Long-term: 16 day bins using 3x5 degree grids derived from all data (not from ju
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org0133b30}]{Anomaly Example: Water Vapor (27N to 30N Latitude Zonal)}
+\begin{frame}[label={sec:org77a5847}]{Anomaly Example: Water Vapor (27N to 30N Latitude Zonal)}
 \vspace{-0.35in}
 
 \begin{columns}
@@ -414,12 +427,12 @@ Long-term: 16 day bins using 3x5 degree grids derived from all data (not from ju
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orga4b2b8a}]{Conclusions and Future Work}
+\begin{frame}[label={sec:org1792a1b}]{Conclusions and Future Work}
 \begin{itemize}
 \item Develop gridded radiance product using CHIRP data
 \item Refine and validate trend and anomaly geophysical products derived from these radiance grids (zonal for now)
 \begin{itemize}
-\item Measurement error covariances
+\item Introduce off-diagonal measurement error covariances
 \item Test TwoSlab cloud approach in more detail
 \item Include microwave in trend/anomaly retrievals?
 \item Validate, esp. using GPS-RO
