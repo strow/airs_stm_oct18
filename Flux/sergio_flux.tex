@@ -173,13 +173,16 @@
 % % ---------------------------------------------------------------------
 % % ---------------------------------------------------------------------
 \begin{frame}
-  \frametitle{Flux Jacobians : Method}
+  \frametitle{Flux Changes : Method}
   \begin{itemize}
-  \item Start with UMBC T/Q/etc. trends derived from radiance trends.
-  \item Do monthly averages (180 total between 2002/09 to 2017/08)
-  \item Compute clear sky and TwoSlab fluxes for all latitude bins/180 months
-  \item Add in CO2 change $\cd(t) = 370 + 2.2/12 \delta t$ where $\delta t = (t-2002/08)$ in months, same for CH4, etc.
-  \item Compute RRTM OLR for yearly averaged profile, then again with our 15-trends added on. Take the difference to get $\delta$ OLR
+  \item Start with one averaged profile per zonal latbin, 370 ppm \cd, 1800 ppb \methane, 320 ppb \nitrous
+  \item Now for next 15 years (180 months between 2002/09 to 2017/08)
+  \begin{itemize}
+    \item include  UMBC T/ST/Q/O3/cloud trends derived from radiance trends.
+    \item Add in CO2 change $\cd(t) = 370 + 2.2/12 \delta t$ where $\delta t = (t-2002/08)$ in months, same for CH4, etc.
+  \end{itemize} 
+  \item Compute RRTM Clear sky and TwoSlab fluxes for all latitude bins/180 months
+  \item Can take the differences to get $\delta$ OLR
   \end{itemize}
 \end{frame}
 % % ---------------------------------------------------------------------
@@ -262,7 +265,6 @@
   \begin{center}
     \dlandgraph{0.48}{Figs/umbc_wvonly_spectralfluxchange.png}{Figs/umbc_co2only_spectralfluxchange.png}
   \end{center}
- Errorbars : TBD for next AIRS STM
 \end{frame}
 
 \begin{frame}
@@ -274,7 +276,6 @@
   \begin{center}
     \dlandgraph{0.48}{Figs/umbc_STonly_spectralfluxchange.png}{Figs/umbc_Tonly_spectralfluxchange.png}
   \end{center}
- Errorbars : TBD for next AIRS STM
 \end{frame}
 % % ---------------------------------------------------------------------
 % % ---------------------------------------------------------------------
@@ -309,8 +310,8 @@
     \item SurfTemp flux change contribution $\sim$ +0.5 of total flux change (ie increasing the OLR)
     \item AtmTemp  flux change contribution $\sim$ > +1.0 of total flux change (ie increasing the OLR)            
   \end{itemize}
-  Tatm, Tsurf are winning the battle (more OLR) than what GHG (CO2/WV) are trapping \newline
-  In S. Antartica region, lowered TSurfs causing net reduction in OLR
+  Tatm, Tsurf emit more OLR than what GHG (CO2/WV) are trapping \newline
+  In Southern Ocean region, lowered Surf Temps causing net reduction in OLR
   \end{frame}
 
 \begin{frame}
