@@ -1,9 +1,9 @@
 #+startup: beamer
 #+Options: toc:nil H:1
 #+LaTeX_CLASS_OPTIONS: [10pt,t]
-#+TITLE: \large A AIRS Plus CrIS/IASI Multi-Decadal Trends and Anomalies with Full Spatial Sampling and Rigorous Error Characterization
+#+TITLE: \large AIRS Plus CrIS/IASI Multi-Decadal Trends and Anomalies with Full Spatial Sampling and Rigorous Error Characterization
 #+BEAMER_HEADER: \subtitle{\footnotesize{AIRS Science Team Meeting}}
-#+BEAMER_HEADER: \date{\vspace{0.1in}\footnotesize{April 25, 2018 \vfill}}
+#+BEAMER_HEADER: \date{\vspace{0.1in}\footnotesize{October 3, 2018 \vfill}}
 #+BEAMER_HEADER: \author{L. Larrabee Strow\inst{1,2}, Sergio De-Souza Machado\inst{1,2}, Steven Leroy\inst{3}, Howard Motteler\inst{2}, Chris Hepplewhite\inst{2}, and Steven Buczkowski\inst{2}}
 #+BEAMER_HEADER: \institute[UMBC]{\inst{1} UMBC Physics Dept. \and \inst{2}UMBC JCET \and \inst{3} AER}
 #+BEAMER_HEADER: \input beamer_setup
@@ -23,16 +23,61 @@
 }
 #+END_EXPORT
 
+* Overview:  Two Products Proposed
+  :PROPERTIES:
+  :BEAMER_opt: shrink=20
+  :END:
+\vspace{-0.1in}
+** (1) Multi-Instrument Hyperspectral Radiance Climate Time Series 
+  - 1:30 Orbit: AIRS + CrIS, 9:30 Orbit: IASI
+  - Convert to common ILS to allows inter-instrument radiance calibration
+  - Emphasizes routine/fast processing of data for extensive testing
+  - Produce time/space grids of radiance time series and anomalies for climate analysis
 
+** (2) Level 3 Geophysical Products
+  - Generate geophysical (T/Q, etc.) "Level 3" anomaly time series and trends from radiance trends and anomailes
+  - This approach reduces influence of a-priori and allows better error estimation?
+  - May include well established microwave radiance products in retrievals
 
-* CHIRB
+** Validation/Comparisons
+  - Reanalysis: ERA+, MERRA-2
+  - Microwave
+  - Surface and SST climatologies
+  - GPS-RO (Leroy)
 
-* Introduction
+* Time Series Length Nearing Climate Scales
+\vspace{-0.3in}
+
+** \footnotesize CLARREO Schematic: Our Uncertainty?
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+[[./Figs/Pdf/clarreo.pdf]]
+\vspace{0.1in}
+#+ATTR_LATEX: :width \linewidth 
+
+\footnotesize
+AIRS, CrIS, IASI are /all/ very stable
+
+** \footnotesize AIRS 14-Year global trends
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+#+ATTR_LATEX: :width \linewidth 
+[[./Figs/Pdf/1231and1566cm-1_dbt_uncertainty_vs_time_iasi_airs_2016_v2.pdf]]
+
+\footnotesize
+These are 2-\sigma B(T) statistical uncertainties due to inter-annual variability.  
+
+Some channels, some latitudes not gaussian (strat sudden warmings, QBO, etc.)
+
+* CHIRB Processing Flow
 \vspace{-0.2in}
 #+ATTR_LATEX: :width 1.0\linewidth 
 [[./airs2cris_stm_talk2_landscape.pdf]]
-
-
 
 CHIRB: (Common or Climate) Hyperspectral InfraRed Basis
 
@@ -40,112 +85,240 @@ CHIRB: (Common or Climate) Hyperspectral InfraRed Basis
 
 0.0625 / 0.0833  /  0.1250
 
-* Introduction
+* Time/Space Gridded Radiance Data Flow
 \vspace{-0.1in}
 #+ATTR_LATEX: :width 0.6\linewidth 
 [[./airs2cris_stm_talk2_small.pdf]]
 
+* Anomaly and Trend Approach
 
+Linear solution for trends with a-priori state = 0 given by,
+\begin{displaymath}
+\frac{dx}{dt} =  \left(K^T S_{\epsilon}^{-1} K + R^{-1}\right)^{-1} \left(K^T S_{\epsilon}^{-1} \frac{dBT}{dt}\right)
+\end{displaymath}
 
+- /x/ is the atmospheric state
+- /K/ are the B(T) Jacobians
+- $S_{\epsilon}$ is the observation error covariance matrix. 
+- /R/ combines empirical regularization (Tikonov L1-type) and the \emph{a-priori} covariance-based terms
 
+$S_\epsilon$ covariances represent inter-annual variability and instrument stability.  Provides signficiant constraints compared to L3 time derivatives.
 
-* Overview:  Two Products Proposed
+Jacobian state from standard all-sky retrievals or from re-analysis; high accuracy not needed.
+
+# \vspace{0.1in}
+
+# For anomalies replace $\frac{dx}{dt} \longrightarrow dx$, $\frac{dBT}{dt}  \longrightarrow d(BT)$
+
+* MERRA2, ERA, etc
+  :PROPERTIES:
+  :BEAMER_opt: shrink=20
+  :END:
+
+- Barnet's CLIMCAPS will use MERRA-2 as a-priori
+- My understanding is that MERRA-2 will be embedded in the CLIMAPS products
+
+** This Work
+- We match every radiance measurement with ERA (and soon MERRA-2)
+- We simulated radiances from MERRA-2 and use them to test our retrieval algorithms
+- Our Jacobians are dependent on MERRA-2 profiles
+- MERRA-2 also provides partial validation
+
+** Suggestion
+- Create a separate Sounding Product that co-locates MERRA-2 with each observation
+- Provides a common resource for our sounding algorithms and for future users
+- Maybe we could get MERRA-2 integrated to the sensor observation time (w/in 1/2 hour instead of 3 hours)?
+
+* Data Used for Preliminary Results
+
+- Start with a ~1% random, area-weighted subset (for quick processing)
+- Produce 40 area weighted zonal bins
+- Save daily averages of these 40 zonal bins
+
+Long-term: 16 day bins using 3x5 degree grids derived from all data (not from just 1% random subset)
+
+** Data set size for preliminary work:
+  - (5475 days) X (2645 L1c spectral channels) X (40 latitude bins)
+
+* Global B(T) Trend (Area Weighted)
+
+\vspace{-0.15in}
+#+ATTR_LATEX: :width 0.7\linewidth 
+[[./oFigs/airs_14year_global_trends.pdf]]
+
+\small
+- \cd corrected trends show nominal 0.015K/year warming for the surface and throughout the troposphere
+- \cd corrected stratospheric channels show cooling
+
+* Retrieved Zonal Trends (T/\water/T_{surf})
+\vspace{-0.35in}
+
+** \footnotesize Temperature (K/Decade)
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+#+ATTR_LATEX: :width 0.8\linewidth 
+\vspace{-0.1in}
+[[./Figs/Png/temp_trend.png]]
+
+** \footnotesize Water Vapor (%/Year)
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.1in}
+#+ATTR_LATEX: :width 0.8\linewidth 
+[[./Figs/Png/wat_trend.png]]
+
+** 
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+\vspace{-0.2in}
+** \footnotesize Surface Temperature (K/Decade)
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.05in}
+#+ATTR_LATEX: :width 0.8\linewidth 
+\vspace{-0.05in}
+[[./Figs/Pdf/tsurf_trend.pdf]]
+
+** \footnotesize 
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.1in}
+\footnotesize
+- Tropospheric warming, stratospheric cooling
+- Very high arctic warming (as expected)
+- Cloud problems \pm 20 Deg lat in troposphere?
+- Error estimates require off-diagonal measurement error covariance
+
+* Retrieved \ozone, Clouds 
+
+\vspace{-0.35in}
+
+** \footnotesize Cloud Trends
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+#+ATTR_LATEX: :width 0.9\linewidth 
+\vspace{-0.1in}
+[[./Figs/Pdf/cloud_trend.pdf]]
+
+** \footnotesize Ozone Trends
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.1in}
+#+ATTR_LATEX: :width 0.9\linewidth 
+[[./Figs/Png/o3_trend_upto_1mbar.png]]
+
+** 
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+** \footnotesize 
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.3in}
+\small
+- Ice cloud trends some similarity to B. Kahn's 2018 paper!
+- Except for decrease in ice water path near equator
+
+** \footnotesize 
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.3in}
+\small
+- Tropospheric \ozone increases similar to the recent literature
+- Stratospheric variability also in agreement, hot topic right now
+
+* Stratopsheric Ozone Trend Inter-Comparisons
+\vspace{-0.15in}
+** \footnotesize Ball et. al., ACP (2018)
+
+\vspace{-0.1in}
+#+ATTR_LATEX: :width 0.9\linewidth 
+[[./Figs/Png/ozone_ball_2018.png]]
+
+\vspace{-0.3in}
+** \footnotesize AIRS Ozone Trends
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.5
+  :END:
+\vspace{-0.1in}
+#+ATTR_LATEX: :width 0.85\linewidth 
+[[./Figs/Png/o3_trend_upto_1mbar.png]]
+
+** \footnotesize 
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.1in}
+\footnotesize
+- We see a nominal 10-100 hPa reduction in \ozone (Chinese CFC issue?)
+- And, somewhat similar increase in \ozone in the upper strat
+- Encouraging results for first look
+
+* Trend Uncertainties: Only Diagonal Meas. Error Covariance
   :PROPERTIES:
   :BEAMER_opt: shrink=10
   :END:
 \vspace{-0.1in}
-** (1) Multi-Instrument Hyperspectral Climate Time Series 
-  - 1:30 Orbit: AIRS + CrIS, 9:30 Orbit: IASI
-  - Convert to common ILS, CrIS 0.8/0.6/0.4 cm OPD (LW/MW/SW) "Hybrid Time Series"
-  - Allows inter-instrument radiance calibration, needed for climate
-  - Allows use of a common forward model
-  - Emphasize routine/fast processing of data for validation and Level 3
-
-** (2) Level 3 Products: Radiance and Geophysical 
-  - Produce time/space grids of radiance time series and anomalies for climate analysis
-  - Generate geophysical (T/Q, etc.) "Level 3" anomaly time series and trends
-  - Generating radiance trends/anomalies first reduces errors and influence of a-priori
-  - Optimal estimation for Level 2 anomalies, proposal emphasis on applicable covariance estimates and total system uncertainties
-
-* SNPP vs NOAA20 CrIS (via AIRS Snos)
-\vspace{-0.1in}
-
-#+ATTR_LATEX: :width 0.7\linewidth 
-[[./oFigs/sno_march2018_snpp_minus_noaa20_with_c2_airs_ingrey.pdf]]
-
-\vspace{-0.1in}
-
 \small
-- AIRS and CrIS radiometric calibration differences after putting AIRS on the CrIS ILS grid.  (AIRS - NOAA20 CrIS) and (SNPP CrIS - NOAA20 CrIS) shown.
 
-* Data Processing Flow
-  :PROPERTIES:
-  :BEAMER_opt: label=flow
-  :END:
-#+LaTeX: \vspace{-0.1in}
-#+ATTR_LATEX: :width 0.64\linewidth 
-[[./oFigs/airs2cris_vx_sounding.pdf]]
+- Trend retrieval /measurement errors/ are (a) inter-annual variability (b) instrument drift, and (c) sampling noise
 
-* AIRS2CrIS for Level 2 Retrievals?  (Summary)
-- Continuity requires adjusting for satellite differences
-- Only way I can see is to use a common ILS
-- Which allows you to use a common RTA
-- Instrument noises can be adjusted to be identical if needed (AIRS noise will be lowered when converted to CrIS ILS)
-- DOFs of CrIS (NSR or FSR) very similar to AIRS
-- "AIRS2CrIS" product samples will hopefully be ready soon for testing
+- Off-diagonal elements of (a) are LARGE and have not been used/characterized, thus error estimates are incorrect.  Trial covariance matrices have large condition numbers.
 
-* Example Product Slides Below
-* Global B(T) Trend (hardest case)
+- However, uncertainties using diagonal only errors do show reasonable patterns
 
-\vspace{-0.15in}
-#+ATTR_LATEX: :width 0.8\linewidth 
-[[./oFigs/airs_14year_global_trends.pdf]]
-
-\small
-Uncertain on fit vs specify \cd, \methane etc. trends. We have done both.
-
-Specifying OK for long-term trends.  
-
-* Example: 14-Year Zonal Temperature Trends
+- Striping in tropical troposphere likely related to clouds
 
 \vspace{-0.1in}
 
-\small /NOTE larger color scale on left./
-
-\vspace{-0.1in}
-
-** \footnotesize From Level 3
+** \footnotesize Temperature Uncertainties
   :PROPERTIES:
   :BEAMER_env: block
   :BEAMER_col: 0.55
   :END:
+#+ATTR_LATEX: :width 0.9\linewidth 
+\vspace{-0.1in}
+[[./Figs/Png/temp_unc.png]]
 
-#+ATTR_LATEX: :width \linewidth 
-[[./oFigs/final_l3_t.png]]
-
-** \footnotesize From Radiance Derivatives
+** \footnotesize Water Uncertanties
   :PROPERTIES:
   :BEAMER_env: block
   :BEAMER_col: 0.55
   :END:
-
-#+ATTR_LATEX: :width \linewidth 
-[[./oFigs/final_umbc_t_zoom_cmap.png]]
+\vspace{-0.1in}
+#+ATTR_LATEX: :width 0.9\linewidth 
+[[./Figs/Png/wat_unc.png]]
 
 ** 
-  :PROPERTIES:
-  :BEAMER_env: ignoreheading
-  :END:
-
-
-Interannual variability (observation covariance) regularizes OE solution.
-
-Need to work on off-diagonal obs covariances to get uncertainties right.
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
 
 * Anomaly Example: Water Vapor (27N to 30N Latitude Zonal)
 \vspace{-0.35in}
 
-** \footnotesize From radiance anomaly 
+** \footnotesize This work
   :PROPERTIES:
   :BEAMER_env: block
   :BEAMER_col: 0.55
@@ -182,7 +355,87 @@ Need to work on off-diagonal obs covariances to get uncertainties right.
 #+ATTR_LATEX: :width 0.8\linewidth 
 [[./oFigs/water_lati_30_L3.png]]
 
+** \footnotesize 
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
 
+\small
+- Input: radiance anomalies, a-priori of zero
+- These are old, working on updates
+- New work using Jacobians that vary with time, here just using a single Jacobian for all times
+
+* Conclusions and Future Work
+- Develop gridded radiance product using CHIRP data 
+- Refine and validate trend and anomaly geophysical products derived from these radiance grids (zonal for now)
+  - Measurement error covariances
+  - Test TwoSlab cloud approach in more detail
+  - Include microwave in trend/anomaly retrievals?
+  - Validate, esp. using GPS-RO
+  - Retrieve \cd and other minor gases (trends and anomalies)
+
+
+* COMMENT AIRS2CrIS for Level 2 Retrievals?  (Summary)
+- Continuity requires adjusting for satellite differences
+- Only way I can see is to use a common ILS
+- Which allows you to use a common RTA
+- Instrument noises can be adjusted to be identical if needed (AIRS noise will be lowered when converted to CrIS ILS)
+- DOFs of CrIS (NSR or FSR) very similar to AIRS
+- "AIRS2CrIS" product samples will hopefully be ready soon for testing
+
+* COMMENT xxx
+cloud_trend.png
+o3_trend_upto_1mbar.png
+
+fit_rate_rms.pdf
+
+
+o3_trend_upto_1mbar_down_to_140mbar.png
+o3_trend.png
+o3_unc.png
+temp_unc.png
+wat_unc.png
+fit_baseline.png
+
+
+15_year_obs_rates_global_nu_corrected.png
+
+* COMMENT Example: 14-Year Zonal Temperature Trends
+
+\vspace{-0.1in}
+
+\small /NOTE larger color scale on left./
+
+\vspace{-0.1in}
+
+** \footnotesize From Level 3
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+#+ATTR_LATEX: :width \linewidth 
+[[./oFigs/final_l3_t.png]]
+
+** \footnotesize From Radiance Derivatives
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+
+#+ATTR_LATEX: :width \linewidth 
+[[./oFigs/final_umbc_t_zoom_cmap.png]]
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: ignoreheading
+  :END:
+
+
+Interannual variability (observation covariance) regularizes OE solution.
+
+Need to work on off-diagonal obs covariances to get uncertainties right.
 
 * COMMENT AIRS, CrIS Differences
 #+LaTeX: \vspace{-0.1in}
@@ -461,3 +714,4 @@ Approach
       - Need to reprocess often to understand climate-level behavior of the system
   - Differential CC yield goes away with single-footprint retrieval
   - I hope we have a new set of users in the next 10 years looking at climate, we need to new approaches to be ready?
+

@@ -30,22 +30,22 @@
   :END:
 \vspace{-0.1in}
 
-- We have a mult-instrument hyperspectral radiance record (AIRS, CrIS(2), IASI(2)
+- We have a 15+ year multi-instrument radiance record (AIRS, CrIS(2), IASI(2))
 - NASA has asked for continuity products, with an emphasis on climate
 - For climate, the radiances are a "product" used by the scientific community
 ** Instrument Characteristics (AIRS vs CrIS vs IASI)
 - Different Spectral Response Functions (SRF)
 - Different channel center frequencies ($\nu_i$)
 - Different, but similar absolute calibration accuracy (~0.1-0.3K)
-- BUT: /Their radiometric stability is at least ~100 X *BETTER* then absolute calibration accuracy!/
-** Possible Continuity Requirements (that provide same observation sensitivities)
+- BUT: /Their per year radiometric stability is at least ~100 X *BETTER* then absolute calibration accuracy!/
+** Continuity Requirements (that provide same observation sensitivities)
 - Same SRFs 
 - Same $\nu_i$
 - Same Radiative transfer model (RTA)
 - Same noise?
 - Same retrieval algorithm
 
-\large Proposed Solution: \textcolor{maroon}{CHIRP}
+\large Proposed Solution for Radiances: \textcolor{maroon}{CHIRP}
 
 * CHIRP + Radiance Based L3 Retrieval Data Flow
 
@@ -114,7 +114,7 @@ CHIRP = (1) AIRS2CrIS (2) CrIS modified SRF, (3) IASI modified SRF
 [[./Figs/Pdf/hyperall_hamming.pdf]]
 
 
-** CHIRP Spectrum (from AIRS)
+** CHIRP Spectrum (AIRS2CrIS)
   :PROPERTIES:
   :BEAMER_env: block
   :BEAMER_col: 0.55
@@ -129,7 +129,7 @@ CHIRP = (1) AIRS2CrIS (2) CrIS modified SRF, (3) IASI modified SRF
 
 AIRS modules shown in different colors in CHIRP spectrum. This is CrIS-NSR, final CHIRP will be between CrIS NSR and FSR (MW/SW).
 
-* Bad CHIRP Channels are Flagged
+* Bad AIRS2CrIS Channels are Flagged
 \vspace{-0.35in}
 ** \footnotesize Simulated Channels
   :PROPERTIES:
@@ -180,8 +180,11 @@ AIRS modules shown in different colors in CHIRP spectrum. This is CrIS-NSR, fina
 
 * Validation: PDF's of Single Channels
 - How closely will AIRS2CrIS (CHIRP) compare to CrIS for single scenes?
-- We collected a large random statistical set of AIRS and SNPP-CrIS observations for the 675.6 \wn channels (closest matches)
-- Examine the PDFs (histograms) of (a) AIRS native SRF (b) AIRS2CrIS, with (c) CrIS.
+- We collected a large random statistical set of AIRS and SNPP-CrIS observations for the 675.6 \wn channels (closest match)
+- Examine the PDFs (histograms) differences for:
+    1. AIRS native SRF 
+    2. AIRS2CrIS
+    3. CrIS
 
 * PDF's for a Single CHIRP Channel Compared to CrIS
 \vspace{-0.35in}
@@ -235,7 +238,7 @@ AIRS modules shown in different colors in CHIRP spectrum. This is CrIS-NSR, fina
   :PROPERTIES:
   :Beamer_opt: shrink=20
   :END:
-* Validation: SNOs between CrIS and AIRS/CHIRP
+* Validation: SNOs between CrIS and AIRS2CrIS
 - SNOs are Simultaneous Nadir Overlaps
 - We generate them for combinations of AIRS, CrIS, and IASI
 - And convert AIRS to AIRS2CrIS (CHIRP)
@@ -270,12 +273,7 @@ AIRS modules shown in different colors in CHIRP spectrum. This is CrIS-NSR, fina
   :END:
 
 \small
-Sources for Differences
-\vspace{-0.05in}
-- Differential calibration AIRS modules
-- AIRS SRFs (widths and centroids)
-- Non-linearity: CrIS, AIRS?
-- etc.
+SNOs and Random Comparisons in good agreement.  Random averages have ~0.2K adjustment to compensate for CrIS having a larger mean secant angle than AIRS.
 
 * SNPP vs NOAA20 CrIS (via AIRS Snos)
 \vspace{-0.1in}
@@ -286,9 +284,10 @@ Sources for Differences
 \vspace{-0.1in}
 
 \small
-- /Preliminary/, NOAA20 CrIS non-linearity will be updated in July 2018
-- Connecting CrIS instruments together will be easier!
-- So far spatial, spectral, and sampling among CrIS instruments will be identical 
+- NOAA20 and SNPP calibration may be updated in the future
+- AIRS L1b calibration updates by Tom Pagano under consideration
+- AIRS used as a "third party" cross-calibration transfer sensor!
+
 
 * Time Series Tests
 (See talk by Chris Hepplewhite on Friday)
@@ -324,25 +323,21 @@ Note: AIRS and CrIS do have sampling differences, very minimal with zonal averag
 - /If/ you need similar noise figures, will need to add (a little) noise to either AIRS2CRIS or CrIS depending on the spectral region
 - The first two items may impact minor gas retrievals (\methane, HDO, CO) depending on the instrument
 - BUT, you can always "import" the native resolution radiances into your algorithm for the minor-gas part of the retrieval.  Adds complexity and a separate RTA.
-- Its new.  
+- It's new.  
 
-* Future Work
-  :PROPERTIES:
-  :Beamer_opt: shrink=20
-  :END:
+* Future Work: AIRS L1c is a pre-requisite for AIRS2CrIS
 
-- AIRS L1c is a pre-requisite for AIRS2CrIS
   - Ready except for frequency calibration (orbital + drift and Doppler corrections)
   - These should be ready in the next few months
   - UMBC can produce L1c with these corrections now
   - UMBC proposed L1c frequency set delivered to JPL
-- CHIRP Algorithm
+* Future Work: CHIRP Algorithm
   - AIRS2CrIS is on github at https://github.com/strow/airs_deconv.git
   - JPL SIPS is starting on integration and data formats
   - UMBC needs to formalize quality flags
   - Document performance 
     - Algorithm paper accepted: Motteler et. a., IEEE Geophysical Transactions, 2018
-- CHIRP RTA
+* Future Work: CHIRP RTA
   - UMBC has produced CrIS FSR=0.8/0.8/0.8 and NSR=0.8/0.4/0.2 OPD RTAs
   - However, they use different spectroscopy (FSR more up-to-date, HITRAN 2012)
   - We plan a new set of updates using HITRAN 2016 and new \cd-\water collision spectroscopy (see Sergio DeSouza-Machado's talk) in the next 6+ months?  Can also do CHIRP.
@@ -581,4 +576,8 @@ clarreo.pdf
 v5v6_kernel.pdf
   :PROPERTIES:
   :Beamer_opt: shrink=10
+  :END:
+
+  :PROPERTIES:
+  :Beamer_opt: shrink=20
   :END:
