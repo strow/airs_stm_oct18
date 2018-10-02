@@ -1,4 +1,4 @@
-% Created 2018-10-01 Mon 14:33
+% Created 2018-10-01 Mon 22:45
 % Intended LaTeX compiler: pdflatex
 \documentclass[10pt,t]{beamer}
 \usepackage[utf8]{inputenc}
@@ -35,7 +35,7 @@
  pdftitle={\large A Climate Hyperspectral InfraRed Product (CHIRP)},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 25.3.1 (Org mode 9.1.12)}, 
+ pdfcreator={Emacs 25.1.1 (Org mode 9.1.12)}, 
  pdflang={English}}
 \begin{document}
 
@@ -47,11 +47,11 @@
   \setlength{\partopsep}{2pt}
 }
 
-\begin{frame}[shrink=20,label={sec:orga86e1c0}]{Introduction}
+\begin{frame}[shrink=20,label={sec:orgc6439ed}]{Introduction}
 \vspace{-0.1in}
 
 \begin{itemize}
-\item We have a mult-instrument hyperspectral radiance record (AIRS, CrIS(2), IASI(2)
+\item We have a 15+ year multi-instrument radiance record (AIRS, CrIS(2), IASI(2))
 \item NASA has asked for continuity products, with an emphasis on climate
 \item For climate, the radiances are a "product" used by the scientific community
 \end{itemize}
@@ -60,10 +60,10 @@
 \item Different Spectral Response Functions (SRF)
 \item Different channel center frequencies (\(\nu_i\))
 \item Different, but similar absolute calibration accuracy (\textasciitilde{}0.1-0.3K)
-\item BUT: \emph{Their radiometric stability is at least \textasciitilde{}100 X \alert{BETTER} then absolute calibration accuracy!}
+\item BUT: \emph{Their per year radiometric stability is at least \textasciitilde{}100 X \alert{BETTER} then absolute calibration accuracy!}
 \end{itemize}
 \end{block}
-\begin{block}{Possible Continuity Requirements (that provide same observation sensitivities)}
+\begin{block}{Continuity Requirements (that provide same observation sensitivities)}
 \begin{itemize}
 \item Same SRFs
 \item Same \(\nu_i\)
@@ -72,11 +72,11 @@
 \item Same retrieval algorithm
 \end{itemize}
 
-\large Proposed Solution: \textcolor{maroon}{CHIRP}
+\large Proposed Solution for Radiances: \textcolor{maroon}{CHIRP}
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:org5258a0c}]{CHIRP + Radiance Based L3 Retrieval Data Flow}
+\begin{frame}[label={sec:org23d88b1}]{CHIRP + Radiance Based L3 Retrieval Data Flow}
 \begin{center}
 \includegraphics[width=1.0\linewidth]{./Figs/Pdf/airs2cris_stm_talk1_landscape.pdf}
 \end{center}
@@ -91,7 +91,7 @@ Requirement: High-quality conversion of AIRS to CHIRP ILS
 CHIRP = (1) AIRS2CrIS (2) CrIS modified SRF, (3) IASI modified SRF
 \end{frame}
 
-\begin{frame}[label={sec:org9f1e524}]{CHIRP only Data Flow: Useful for Level 2 Retrievals?}
+\begin{frame}[label={sec:org2014699}]{CHIRP only Data Flow: Useful for Level 2 Retrievals?}
 \vspace{-0.1in}
 
 \begin{center}
@@ -101,7 +101,7 @@ CHIRP = (1) AIRS2CrIS (2) CrIS modified SRF, (3) IASI modified SRF
 \vspace{-0.1in}
 \end{frame}
 
-\begin{frame}[label={sec:orgae15ba2}]{AIRS2CrIS Algorithm}
+\begin{frame}[label={sec:orgd137db5}]{AIRS2CrIS Algorithm}
 \vspace{-0.15in}
 \begin{small}
 \begin{itemize}
@@ -137,7 +137,7 @@ CHIRP = (1) AIRS2CrIS (2) CrIS modified SRF, (3) IASI modified SRF
 \small Shortwave sounding region max noise dominated by CrIS
 \end{frame}
 
-\begin{frame}[label={sec:org8da6082}]{Spectral Differences Among AIRS, CrIS, IASI}
+\begin{frame}[label={sec:org1c4e432}]{Spectral Differences Among AIRS, CrIS, IASI}
 \vspace{-0.2in}
 \begin{columns}
 \begin{column}{0.55\columnwidth}
@@ -150,7 +150,7 @@ CHIRP = (1) AIRS2CrIS (2) CrIS modified SRF, (3) IASI modified SRF
 
 
 \begin{column}{0.55\columnwidth}
-\begin{block}{CHIRP Spectrum (from AIRS)}
+\begin{block}{CHIRP Spectrum (AIRS2CrIS)}
 \begin{center}
 \includegraphics[width=\linewidth]{./Figs/Pdf/a2c_full.pdf}
 \end{center}
@@ -161,7 +161,7 @@ CHIRP = (1) AIRS2CrIS (2) CrIS modified SRF, (3) IASI modified SRF
 AIRS modules shown in different colors in CHIRP spectrum. This is CrIS-NSR, final CHIRP will be between CrIS NSR and FSR (MW/SW).
 \end{frame}
 
-\begin{frame}[label={sec:orgd9668e0}]{Bad CHIRP Channels are Flagged}
+\begin{frame}[label={sec:org2c660e7}]{Bad AIRS2CrIS Channels are Flagged}
 \vspace{-0.35in}
 \begin{columns}
 \begin{column}{0.55\columnwidth}
@@ -210,15 +210,20 @@ AIRS modules shown in different colors in CHIRP spectrum. This is CrIS-NSR, fina
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orgabf5fb7}]{Validation: PDF's of Single Channels}
+\begin{frame}[label={sec:org1d22303}]{Validation: PDF's of Single Channels}
 \begin{itemize}
 \item How closely will AIRS2CrIS (CHIRP) compare to CrIS for single scenes?
-\item We collected a large random statistical set of AIRS and SNPP-CrIS observations for the 675.6 \wn channels (closest matches)
-\item Examine the PDFs (histograms) of (a) AIRS native SRF (b) AIRS2CrIS, with (c) CrIS.
+\item We collected a large random statistical set of AIRS and SNPP-CrIS observations for the 675.6 \wn channels (closest match)
+\item Examine the PDFs (histograms) differences for:
+\begin{enumerate}
+\item AIRS native SRF
+\item AIRS2CrIS
+\item CrIS
+\end{enumerate}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org3f462d9}]{PDF's for a Single CHIRP Channel Compared to CrIS}
+\begin{frame}[label={sec:orgbf8eb33}]{PDF's for a Single CHIRP Channel Compared to CrIS}
 \vspace{-0.35in}
 \begin{columns}
 \begin{column}{0.55\columnwidth}
@@ -268,7 +273,7 @@ AIRS modules shown in different colors in CHIRP spectrum. This is CrIS-NSR, fina
 \end{column}
 \end{columns}
 \end{frame}
-\begin{frame}[label={sec:orgf9048bc}]{Validation: SNOs between CrIS and AIRS/CHIRP}
+\begin{frame}[label={sec:org0f1c8df}]{Validation: SNOs between CrIS and AIRS2CrIS}
 \begin{itemize}
 \item SNOs are Simultaneous Nadir Overlaps
 \item We generate them for combinations of AIRS, CrIS, and IASI
@@ -279,7 +284,7 @@ AIRS modules shown in different colors in CHIRP spectrum. This is CrIS-NSR, fina
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgdf10d64}]{SNPP versus AIRS: SNOs and Large Random Samplings}
+\begin{frame}[label={sec:org65d5bd9}]{SNPP versus AIRS: SNOs and Large Random Samplings}
 \vspace{-0.3in}
 
 \begin{columns}
@@ -303,17 +308,10 @@ AIRS modules shown in different colors in CHIRP spectrum. This is CrIS-NSR, fina
 \end{columns}
 
 \small
-Sources for Differences
-\vspace{-0.05in}
-\begin{itemize}
-\item Differential calibration AIRS modules
-\item AIRS SRFs (widths and centroids)
-\item Non-linearity: CrIS, AIRS?
-\item etc.
-\end{itemize}
+SNOs and Random Comparisons in good agreement.  Random averages have \textasciitilde{}0.2K adjustment to compensate for CrIS having a larger mean secant angle than AIRS.
 \end{frame}
 
-\begin{frame}[label={sec:org1908e31}]{SNPP vs NOAA20 CrIS (via AIRS Snos)}
+\begin{frame}[label={sec:org8067b9c}]{SNPP vs NOAA20 CrIS (via AIRS Snos)}
 \vspace{-0.1in}
 
 \begin{center}
@@ -324,13 +322,14 @@ Sources for Differences
 
 \small
 \begin{itemize}
-\item \emph{Preliminary}, NOAA20 CrIS non-linearity will be updated in July 2018
-\item Connecting CrIS instruments together will be easier!
-\item So far spatial, spectral, and sampling among CrIS instruments will be identical
+\item NOAA20 and SNPP calibration may be updated in the future
+\item AIRS L1b calibration updates by Tom Pagano under consideration
+\item AIRS used as a "third party" cross-calibration transfer sensor!
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orga29c98a}]{Time Series Tests}
+
+\begin{frame}[label={sec:orgdf77ac7}]{Time Series Tests}
 (See talk by Chris Hepplewhite on Friday)
 \begin{block}{Compared AIRS only to CHIRP Time Series}
 \vspace{0.1in}
@@ -354,7 +353,7 @@ Results show climate level agreement between both.
 Note: AIRS and CrIS do have sampling differences, very minimal with zonal averaging (which is what we did).
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orge04a905}]{Pros of CHIRP}
+\begin{frame}[label={sec:org5873ce2}]{Pros of CHIRP}
 \begin{itemize}
 \item Only way I know to correct for inter-instrument radiometric offsets
 \begin{itemize}
@@ -369,27 +368,26 @@ Note: AIRS and CrIS do have sampling differences, very minimal with zonal averag
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgf377716}]{Cons of CHIRP}
+\begin{frame}[label={sec:org756e3be}]{Cons of CHIRP}
 \begin{itemize}
 \item Lowers spectral resolution of AIRS in the long-wave (after Hamming apodization)
 \item Lowers spectral resolution of CrIS-FSR a little in the mid-wave, short-wave
 \item \emph{If} you need similar noise figures, will need to add (a little) noise to either AIRS2CRIS or CrIS depending on the spectral region
 \item The first two items may impact minor gas retrievals (\methane, HDO, CO) depending on the instrument
 \item BUT, you can always "import" the native resolution radiances into your algorithm for the minor-gas part of the retrieval.  Adds complexity and a separate RTA.
-\item Its new.
+\item It's new.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[shrink=20,label={sec:org31cb072}]{Future Work}
-\begin{itemize}
-\item AIRS L1c is a pre-requisite for AIRS2CrIS
+\begin{frame}[label={sec:org120f3e8}]{Future Work: AIRS L1c is a pre-requisite for AIRS2CrIS}
 \begin{itemize}
 \item Ready except for frequency calibration (orbital + drift and Doppler corrections)
 \item These should be ready in the next few months
 \item UMBC can produce L1c with these corrections now
 \item UMBC proposed L1c frequency set delivered to JPL
 \end{itemize}
-\item CHIRP Algorithm
+\end{frame}
+\begin{frame}[label={sec:org594fbe6}]{Future Work: CHIRP Algorithm}
 \begin{itemize}
 \item AIRS2CrIS is on github at \url{https://github.com/strow/airs\_deconv.git}
 \item JPL SIPS is starting on integration and data formats
@@ -399,14 +397,14 @@ Note: AIRS and CrIS do have sampling differences, very minimal with zonal averag
 \item Algorithm paper accepted: Motteler et. a., IEEE Geophysical Transactions, 2018
 \end{itemize}
 \end{itemize}
-\item CHIRP RTA
+\end{frame}
+\begin{frame}[label={sec:org6821d3f}]{Future Work: CHIRP RTA}
 \begin{itemize}
 \item UMBC has produced CrIS FSR=0.8/0.8/0.8 and NSR=0.8/0.4/0.2 OPD RTAs
 \item However, they use different spectroscopy (FSR more up-to-date, HITRAN 2012)
 \item We plan a new set of updates using HITRAN 2016 and new \cd-\water collision spectroscopy (see Sergio DeSouza-Machado's talk) in the next 6+ months?  Can also do CHIRP.
 \item Similar plan for AIRS L1c RTA
 \item Near term: could do proof-of-principle testing with CrIS NSR resolution for CHIRP
-\end{itemize}
 \end{itemize}
 \end{frame}
 \end{document}
