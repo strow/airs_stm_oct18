@@ -327,6 +327,44 @@
   systematic errors (4\% error for 40\% variation in \amm).
 \end{frame}
 % --------------------------------------------------------------------
+\begin{frame}[shrink=20]
+  \frametitle{Existing and Upcoming Versions}
+
+  \begin{block}{AIRS Level 2 Processing}
+    \begin{itemize}
+    \item HITRAN 2008
+    \item Dual frequency set, L2 algorithm interpolates to the correct frequency  dynamically 
+     \end{itemize}
+  \end{block}
+  \begin{block}{CrIS FSR}
+    \begin{itemize}
+    \item HITRAN 2012
+    \item Improved reflected thermal (but slower)
+     \end{itemize}
+  \end{block}
+  \begin{block}{NASA Continuity Processing}
+    \begin{itemize}
+    \item If use present RTAs, will be mixing HITRAN 2008 and HITRAN 2012, etc
+    \item We have built a prototype AIRS L1c HITRAN 2016 code
+      \begin{itemize}
+      \item Not yet tested (just finished)
+      \item Doesn't have latest Hartmann spectroscopy shown above
+      \end{itemize}
+    \item Suggestion for first AIRS + CrIS Level l2 data set
+      \begin{itemize}
+      \item We quickly do an AIRS L1c RTA (HITRAN 2016 + maybe Hartmann)
+      \item We update CrIS RTA (to HITRAN 2016 + maybe Hartmann)
+      \item This takes away time from improving the parameterization, but maybe worth it.
+      \end{itemize}
+  
+      
+
+    \end{itemize}
+  \end{block}
+  
+  
+\end{frame}
+% --------------------------------------------------------------------
 \begin{frame}
   \frametitle{Conclusions}
   \begin{itemize}
@@ -347,3 +385,8 @@
 \end{document}
 % --------------------------------------------------------------------
 % --------------------------------------------------------------------
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
