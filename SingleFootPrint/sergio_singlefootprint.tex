@@ -46,23 +46,23 @@
       T(z),\water(z),O3(z),\textcolor{red}{ice and water clouds}    
     \item \textcolor{red}{100 layer retrieval takes $\le$ 2 seconds per
         single FOV}    
-    \item 8-12 hours per granule, 240 processors do entire day in 12 hours
+    \item 8-12 hours per granule/240 processors do entire day
     \item 100 layers (could be sped up if we use trapezoids?)
-    \item Matlab based loops (will be sped up with f77/f90)
+    \item Matlab based loops 
     \end{itemize}
   \item Used to test SARTA performance
   \item Allows radiosonde inter-comparisons under some cloud cover
   \item Examine single footprint fitting residuals to uncover issues
-  \item "Validations"
+  \item "Validations" presented at earlier AIRS STMs : 
     \begin{itemize}
     \item AIRS L2 ice ODs and MODIS water cloud ODs
     \item GRUAN sondes
     \end{itemize}
-  \item Show and tell
+  \item Show and tell (this presentation)
     \begin{itemize}
-    \item Hurricane Florence
-    \item Looking at humidity above DCC : wetting or drying?
+    \item Hurricane Florence quick look
     \item CO retrievals (post-processing after thermodynamic retrieval)
+    \item Looking at humidity above DCC : wetting or drying?    
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -74,10 +74,11 @@
 \begin{frame}
   \frametitle{Single Footprint Retrievals}
   \begin{itemize}
+  \item 100 layer retrievals
   \item My QA depends on closeness to start profile (T/WV/O3 stemp)
     and bias(900 \wn, 1231 \wn) : low QA is not bad news
   \item Cloud Representation : NWP multilayer cloud converted to Two Slab
-    Clouds (ice/water)
+    Clouds \textcolor{red}{(ice and water clouds)}
   \item OEM methodology, so DOF is a natural diagnostic
   \item smoothing by combination of Tikonov matrices,
     $\sigma(i)^2 e^{-((i-j)/h)^2}$, climatology
@@ -113,17 +114,17 @@
   \frametitle{Hurricane Florence 2018/09/11 g175 BT1231,BT1419}
   
 \vspace{-0.15in}  
-  BT1231 obs  \hspace{2.0in} BT1231 calF\\
+  \footnotesize BT1231 obs  \hspace{1.0in} \footnotesize BT1231 after retr\\
 \vspace{-0.05in}    
   \begin{center}
-    \dlandgraph{0.45}{Figs/HurricaneFlorence2018/bt1231obs.pdf}{Figs/HurricaneFlorence2018/bt1231calF.pdf}
+    \dlandgraph{0.425}{Figs/HurricaneFlorence2018/bt1231obs.pdf}{Figs/HurricaneFlorence2018/bt1231calF.pdf}
   \end{center}
 
 \vspace{-0.15in}  
-  BT1419 obs  \hspace{2.0in} BT1419 calF\\
+  \footnotesize BT1419 obs  \hspace{1.0in} \footnotesize BT1419 after retr\\
 \vspace{-0.05in}    
   \begin{center}
-    \dlandgraph{0.45}{Figs/HurricaneFlorence2018/bt1419obs.pdf}{Figs/HurricaneFlorence2018/bt1419calF.pdf}
+    \dlandgraph{0.425}{Figs/HurricaneFlorence2018/bt1419obs.pdf}{Figs/HurricaneFlorence2018/bt1419calF.pdf}
   \end{center}
 
 \end{frame}
@@ -132,17 +133,17 @@
   \frametitle{Hurricane Florence 2018/09/11 g175 Cloud OD}
 
 \vspace{-0.15in}  
-  UMBC IceOD  \hspace{2.0in} UMBC WaterOD\\
+  \footnotesize UMBC IceOD  \hspace{2.0in} \footnotesize UMBC WaterOD\\
 \vspace{-0.01in}    
   \begin{center}
-    \dlandgraph{0.45}{Figs/HurricaneFlorence2018/ice_odUMBC.pdf}{Figs/HurricaneFlorence2018/water_odUMBC.pdf}
+    \dlandgraph{0.425}{Figs/HurricaneFlorence2018/ice_odUMBC.pdf}{Figs/HurricaneFlorence2018/water_odUMBC.pdf}
   \end{center}
 
 \vspace{-0.15in}  
-  ECM IceOD \hspace{2.0in} AIRS L2 IceOD\\
+  \footnotesize ECM IceOD \hspace{2.0in} \footnotesize AIRS L2 IceOD\\
 \vspace{-0.01in}    
   \begin{center}
-    \dlandgraph{0.45}{Figs/HurricaneFlorence2018/ice_odECM.pdf}{Figs/HurricaneFlorence2018/ice_odL2.pdf}
+    \dlandgraph{0.425}{Figs/HurricaneFlorence2018/ice_odECM.pdf}{Figs/HurricaneFlorence2018/ice_odL2.pdf}
   \end{center}
 
 \end{frame}
@@ -151,20 +152,106 @@
   \frametitle{Hurricane Florence 2018/09/11 g175 RH(z,lat)}
 
 \vspace{-0.15in}  
-  ECM RH  \hspace{2.0in} UMBC RH\\
+  \footnotesize ECM RH  \hspace{2.0in} \footnotesize UMBC RH\\
 \vspace{-0.01in}    
   \begin{center}
     \dlandgraph{0.45}{Figs/HurricaneFlorence2018/curtain_RH_ECM.png}{Figs/HurricaneFlorence2018/curtain_RH_UMBC.png}
   \end{center}
 
 \vspace{-0.15in}  
-  DOF/QA \hspace{2.0in} AIRS L2 RH\\
+  \footnotesize DOF/QA \hspace{2.0in} \footnotesize AIRS L2 RH\\
 \vspace{-0.01in}    
   \begin{center}
     \dlandgraph{0.45}{Figs/HurricaneFlorence2018/curtain_DOF_QA_UMBC.pdf}{Figs/HurricaneFlorence2018/curtain_RH_L2.png}
   \end{center}
 
 \end{frame}
+% ---------------------------------------------------------------------
+\section{DCC}
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{UT/LS WV above DCC}
+\begin{itemize}
+  \item Are deep convection processes drying or moistening UT/LS?
+  \item Cloud clearing lowers resolution (may not show correct spatial distribution pattern)
+  \item Can hyperspectral sounders/single footprint retrievals provide more information than eg ERA
+  \item May also be able to get information about CH4 above DCCs
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{2005/06/17 g083}
+  ``Cloud-Assisted Retrieval of Lower-Stratospheric WV from Nadir-View Satellite
+    Measurements''  J. Feng, Y. Huang, JAOT 2018
+
+\begin{small}
+Comparisons to  AIRS L2 and Harvard Water Vapor instrument during Aura
+Validation Experiment (AVE 2005) \textcolor{red}{using Single Footprint Retrievals}
+\end{small}
+
+\landgraph[0.75]{}{FengHuangFig8.png}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{2005/06/17 g083 : BT1231}
+
+  \begin{center}
+    \noindent\includegraphics[width=0.8\textwidth]{Figs/FigsDCC/bt1231obs_2005_06_17_g083_vers04.pdf}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{2005/06/17 g083 : spectra}
+  \begin{center}
+    \noindent\includegraphics[width=0.8\textwidth]{Figs/FigsDCC/dcc_spectra_2005_06_17.pdf}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{g083 : 140 mb}
+The WV amounts are in ppmv at 140 mb\\
+\hspace{0.5in} \emph{UMBC WV}  \hspace{2.0in} \emph{AIRS L2} \\
+\begin{center}
+\dlandgraph{0.48}{Figs/FigsDCC/umbc_wv_140mb_2005_06_17_g083_vers04.pdf}{Figs/FigsDCC/airsL2_wv_140mb_2005_06_17_g083_vers04.pdf}
+\end{center}
+UMBC shows moistening away from the DCC \\
+Little black dots (AIRS L2) : good/best QA TSuf/ClearSky OLR
+\end{frame}
+
+\begin{frame}
+\frametitle{Is UT/LS made wetter by deep convection?}
+
+  \textcolor{red}{Both McGill U. and UMBC are much wetter than AIRS L2!}
+
+The single footprint approach can help provide insight, as it is
+capable of showing spatial distribution patterns that are smeared out
+in AIRS L2, even at 140 mb
+
+  \begin{center}
+    \noindent\includegraphics[width=0.6\textwidth]{Figs/FigsDCC/delta_WV_with_unc_2005_06_17.png}
+  \end{center}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Some comments}
+\begin{itemize}
+  \item Harvard U. flight was \textcolor{red}{10 hours after g083}; back trajectories show that the LS air they
+        sampled was in the region of the DCC 10 hours earlier!
+  \item flight had g193/g194 overpass, I've looked at AIRS L2/UMBC/ERA for that flight
+    \begin{itemize}
+      \item that flight was over very clear scenes (looked at MODIS L1 images, BT1231 obs compared to ERA surf temp)
+      \item at 140 mb, both AIRS L2 and UMBC had 0.00 $\pm$ 0.75 ppmv bias, ERA had -2 ppmv bias
+      \item at 080 mb, both AIRS L2 and UMBC had 1.75 $\pm$ 0.50 ppmv bias, ERA had 1.25 ppmv bias      
+    \end{itemize}
+  \item Jing and I have also looked at 2014/03/04 data, see similar results over DCC : esp at 140 mb, there
+        are biases between \emph{in-situ} and AIRS L2, while our single footprint retrievals have much smaller biases    
+\end{itemize}
+\end{frame}
+
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
@@ -174,17 +261,15 @@
 \begin{frame}
   \frametitle{CO for 2010/08/01}
   \begin{itemize}
-  \item Juying Warner suggested Aug 2010 (Russian fires)
-  \item Juying,  Antonia Gambacorta,  Chris Barnet and Larrabee made suggestions about eg
-    which \emph{a-priori}, cloud problems etc
+  \item Juying Warner,  Antonia Gambacorta,  Chris Barnet and Larrabee made suggestions about eg
+    dates to try, which \emph{a-priori}, cloud problems etc
     \begin{itemize}
-    \item Only did column CO retrieval    
-    \item bias/std dev over 12150 profiles $\sim$  AIRS NeDT,
-    \item individual thick clouds could have $\geq$ 1 K biases (slope of ice clouds, no size fitting)
-      in the window region \textcolor{red}{including where there are CO lines}
-    \item so I zero out this bias in the CO region, before fitting for CO (WV/T biases still very good)
+    \item First cut : \textcolor{blue}{Only did column CO retrieval}
+    \item bias/std dev over 12150 profiles $\sim$  AIRS NeDT, but individual thick clouds could have
+          $\geq$ 1 K biases (slope of ice clouds, no size fitting) in window region \textcolor{red}{including
+	  CO region}
+    \item zero out this bias in the CO region, before fitting for CO (WV/T biases still very good)
     \end{itemize}
-  \item AIRS L3 monthly average over 10 years has the Central African smoke and Russian fires
   \item Used "Global Atmosphere Watch reactive gases measurement network"
     (GAW) from Martin Schultz, see eg
     \begin{small} https://www.esrl.noaa.gov/gmd/publications/annual\_meetings/2015/slides/18-Helmig.pdf \end{small}
@@ -195,32 +280,17 @@
   \frametitle{CO 2010/08/01 UMBC QA filtered}
 
 \vspace{-0.15in}  
-  Start CO  \hspace{2.0in} Hist CO\\
+  \footnotesize Start CO  \hspace{2.0in} \footnotesize Hist. CO\\
 \vspace{-0.1in}      
   \begin{center}
     \dlandgraph{0.45}{Figs/FigsCO/co_start.pdf}{Figs/FigsCO/co_hist.pdf}
   \end{center}
 
 \vspace{-0.15in}  
-  UMBC CO \hspace{2.0in} AIRS L2 CO\\
+  \footnotesize UMBC CO \hspace{2.0in} \footnotesize AIRS L2 CO\\
 \vspace{-0.1in}      
   \begin{center}
     \dlandgraph{0.45}{Figs/FigsCO/co_umbc.pdf}{Figs/FigsCO/co_L2.pdf}
-  \end{center}
-
-\end{frame}
-% ---------------------------------------------------------------------
-\begin{frame}
-  \frametitle{Clouds 2010/08/01 UMBC Cirrus vs MODIS L3}
-
-\vspace{-0.15in}  
-  \begin{center}
-    \noindent\includegraphics[width=0.7\textwidth]{Figs/FigsCO/ice_cld_od_long.pdf}
-  \end{center}
-
-\vspace{-0.15in}  
-  \begin{center}
-    \noindent\includegraphics[width=0.8\textwidth]{Figs/FigsCO/Cloud_Optical_Thickness_Ice_Mean.png}
   \end{center}
 
 \end{frame}
@@ -240,15 +310,25 @@
 
 \end{frame}
 
-\begin{frame}
-  \frametitle{Clouds 2010/08/01 UMBC Ice vs AIRS L2 Ice}
+%\begin{frame}
+%  \frametitle{Clouds 2010/08/01 UMBC Cirrus vs MODIS L3}
+%\vspace{-0.15in}  
+%  \begin{center}
+%    \noindent\includegraphics[width=0.7\textwidth]{Figs/FigsCO/ice_cld_od_long.pdf}
+%  \end{center}
+%\vspace{-0.15in}  
+%  \begin{center}
+%    \noindent\includegraphics[width=0.8\textwidth]{Figs/FigsCO/Cloud_Optical_Thickness_Ice_Mean.png}
+%  \end{center}
+%\end{frame}
 
-\vspace{-0.15in}  
-  \begin{center}
-    \noindent\includegraphics[width=0.9\textwidth]{Figs/FigsCO/iceL2_umbc_cld_od.pdf}
-  \end{center}
-end
-\end{frame}
+%\begin{frame}
+%  \frametitle{Clouds 2010/08/01 UMBC Ice vs AIRS L2 Ice}
+%\vspace{-0.15in}  
+%  \begin{center}
+%    \noindent\includegraphics[width=0.9\textwidth]{Figs/FigsCO/iceL2_umbc_cld_od.pdf}
+%  \end{center}
+%\end{frame}
 
 % ---------------------------------------------------------------------
 \begin{frame}
@@ -260,77 +340,6 @@ end
   \end{center}
 \end{frame}
 % ---------------------------------------------------------------------
-% ---------------------------------------------------------------------
-\section{DCC}
-% ---------------------------------------------------------------------
-% ---------------------------------------------------------------------
-\begin{frame}
-  \frametitle{Looking at WV in UT/LS above DCC : 2005/06/17 g083}
-  ``Cloud-Assisted Retrieval of Lower-Stratospheric WV from Nadir-View Satellite
-    Measurements''  J. Feng, Y. Huang, JAOT 2018
-
-\begin{small}
-Comparisons to  AIRS L2 and Harvard Water Vapor instrument during Aura
-Validation Experiment (AVE 2005) \textcolor{red}{using Single Footprint Retrievals}
-\end{small}
-
-\landgraph[0.75]{}{FengHuangFig8.png}
-
-\end{frame}
-
-\subsection{2005/06/17 g083 over DCC : BT1231}
-\begin{frame}
-\frametitle{Results g083 : BT1231}
-
-  \begin{center}
-    \noindent\includegraphics[width=0.7\textwidth]{Figs/FigsDCC/bt1231obs_2005_06_17_g083_vers04.pdf}
-  \end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{g083 : 140 mb}
-The WV amounts are in ppmv at 140 mb\\
-\hspace{0.5in} \emph{UMBC WV}  \hspace{2.0in} \emph{AIRS L2} \\
-\begin{center}
-\dlandgraph{0.525}{Figs/FigsDCC/umbc_wv_140mb_2005_06_17_g083_vers04.pdf}{Figs/FigsDCC/airsL2_wv_140mb_2005_06_17_g083_vers04.pdf}
-\end{center}
-UMBC shows moistening away from the DCC \\
-Little black dots (AIRS L2) : good/best QA TSuf/ClearSky OLR
-\end{frame}
-
-\begin{frame}
-\frametitle{Results Wetting of UT/LS}
-
-\vspace{-0.05in}
-  \textcolor{red}{JF/YH (and others) want to address seasonable
-  variability of wetting/drying of UT/LS by deep convection} \newline
-
-\vspace{-0.155in}
-The single footprint approach can help provide insight, as it is
-capable of showing spatial distribution patterns that are smeared out
-in AIRS L2, even at 140 mb
-
-  \begin{center}
-    \noindent\includegraphics[width=0.625\textwidth]{Figs/FigsDCC/delta_WV_with_unc_2005_06_17.png}
-  \end{center}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Some comments}
-\begin{itemize}
-  \item Harvard U. flight was \textcolor{red}{10 hours after g083}
-  \item flight had g193/g914 overpass, I've looked at AIRS L2/UMBC/ERA for that flight
-    \begin{itemize}
-      \item that flight was over very clear scenes (looked at MODIS L1 images, BT1231 obs compared to ERA surf temp)
-      \item at 140 mb, both AIRS L2 and UMBC had 0.00 $\pm$ 0.75 ppmv bias, ERA had -2 ppmv bias
-      \item at 080 mb, both AIRS L2 and UMBC had 1.75 $\pm$ 0.50 ppmv bias, ERA had 1.25 ppmv bias      
-    \end{itemize}
-  \item Jing and I have also looked at 2014/03/04 data, see similar results over DCC : esp at 140 mb, there
-        are biases between \emph{in-situ} and AIRS L2, while our single footprint retrievals have much smaller biases    
-\end{itemize}
-\end{frame}
-
 % ---------------------------------------------------------------------
 \begin{frame}
   \frametitle{Conclusions}
@@ -353,6 +362,20 @@ in AIRS L2, even at 140 mb
 % ---------------------------------------------------------------------
 \end{document}
 % ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{Ice CldTop Heights}
+
+  \hspace{0.25in} ECMWF \hspace{1.00in} UMBC retr \hspace{1.0in} MODIS L2  \\
+  \begin{center}
+    \includegraphics[width=0.95\linewidth]{Figs/FigsRetr/cldheight_v2.pdf}
+  \end{center}
+
+  Ice clouds with OD $\le$ 0.5 have been removed from plots \\
+  Note similarity to BT1231 obs (high clouds = cold obs)
+  
+\end{frame}
 % ---------------------------------------------------------------------
 
 JUNK
@@ -441,19 +464,6 @@ Little black dots (AIRS L2) : good/best QA TSuf/ClearSky OLR
   \vspace{-0.15in} Right panel : BT1231 Observations (black) compared to
   calculations using the original ECMWF model fields (blue) and with the
   mitigated/retrieved cloud fields (red).
-  
-\end{frame}
-% ---------------------------------------------------------------------
-\begin{frame}
-  \frametitle{Ice CldTop Heights}
-
-  \hspace{0.25in} ECMWF \hspace{1.00in} UMBC retr \hspace{1.0in} MODIS L2  \\
-  \begin{center}
-    \includegraphics[width=0.95\linewidth]{Figs/FigsRetr/cldheight_v2.pdf}
-  \end{center}
-
-  Ice clouds with OD $\le$ 0.5 have been removed from plots \\
-  Note similarity to BT1231 obs (high clouds = cold obs)
   
 \end{frame}
 % ---------------------------------------------------------------------
