@@ -22,6 +22,121 @@
 }
 #+END_EXPORT
 
+* AIRS SNOs with IASI and CrIS Show Same Patterns
+\vspace{-0.1in}
+- SNO differences are run through a high-pass only filter
+- Eliminates smooth SNO diffs that could be CrIS, IASI, or AIRS
+
+#+ATTR_LATEX: :width 0.75\linewidth 
+[[./wFigs/good_a2c_same_cris_or_iasi.pdf]]
+
+* Could Patterns be due to AIRS SRF Width Errors?
+\vspace{-0.1in}
+- AIRS SRF width uncertainties are ~5% (TVAC data)
+- Black line: reduce SRFs by 5%, what is the expected SNO difference
+
+#+ATTR_LATEX: :width 0.75\linewidth 
+[[./wFigs/good_a2c_same_cris_or_iasi_sim_5pc_lowered_width.pdf]]
+
+* Other SRF Errors, since it is not the widths?
+  :PROPERTIES:
+  :Beamer_opt: shrink=10
+  :END:
+\vspace{-0.1in}
+- Simulations of SNO sensitivty to uncertainties in the SRF /centroids/ are too small to create observed patterns
+
+- Entrance filter fringe shifts (seen before/after Nov. 2003 Aqua shutdown) are not the cause, they are far too small
+
+Tom Pagano has done a re-calibration of AIRS L1b based on a better analysis of TVAC data.  The new candidate calibration is v7 (as opposed to present v5 calibration)
+
+\vspace{0.1in}
+
+We now compare the SNO data to the v5 - v7 calibration differences.
+
+We show two types of plots:
+  1.  AIRS/CrIS SNOs compared to V5 - V7 calibration differences 
+  2.  AIRS/CrIS v5 SNOs (present L1b) compared to AIRS/CrIS v7 SNOs
+
+\vspace{0.1in}
+
+AIRS/CrIS v7 SNOs = (AIRS_v5/CrIS SNOs) - (v5 - v7 Cal Diffs)
+
+* First Convert v5 - v7 B(T) Differences to CrIS ILS/SRF
+\vspace{-0.3in}
+
+** 
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+#+ATTR_LATEX: :width \linewidth 
+[[./Figs/Pdf/v5_minus_v7_airs_srf_and_airs2cris_lw_only.pdf]]
+
+** Approach
+  :PROPERTIES:
+  :BEAMER_env: block
+  :BEAMER_col: 0.55
+  :END:
+\vspace{-0.1in}
+- Tom Pagano's v5 - v7 differences use AIRS SRF, 2378 channel set
+- We need to compare to CrIS on the AIRS2CrIS scale (CrIS NSR resolution)
+- Conversion to CrIS SRF
+  1. We add Tom's v5 - v7 to a similar L1c B(T) spectrum
+  2. Convert this to AIRS2CrIS
+  3. Subtract this B(T) from un-perturbed AIRS2CrIS spectrum
+  4. You now have Tom's v5-v7 diffs on the CrIS SRF scale
+
+
+* COMMENT pagano_d1_with_sno_diff_on_chirp.pdf
+[[./Figs/Pdf/pagano_d1_with_sno_diff_on_chirp.pdf]]
+
+* Overview of SNO Diffs to v5-v7 Diffs
+\vspace{-0.1in}
+#+ATTR_LATEX: :width 0.75\linewidth 
+[[./Figs/Pdf/airs_v5_sno_minus_cris_and_v5_minus_v7.pdf]]
+
+\vspace{-0.1in}
+- Highest similarity in the mid-wave
+- Same similar patterns in the long-wave
+
+* Create SNO_v7 and Compare to SNO_v5
+\vspace{-0.1in}
+#+ATTR_LATEX: :width 0.75\linewidth 
+[[./Figs/Pdf/airs_v7_sno_and_airs_v5_sno.pdf]]
+
+\vspace{-0.1in}
+- Shortwave: v5 SNO "better", ie smaller SNO differences
+
+* Midwave SNO_v7 versus SNO_v5
+\vspace{-0.1in}
+#+ATTR_LATEX: :width 0.75\linewidth 
+[[./Figs/Pdf/airs_v7_sno_and_airs_v5_sno_mw.pdf]]
+
+\vspace{-0.1in}
+- v7 Problems near 1300 \wn (low B(T)'s there)
+- Some improvement with v7 near 1500 \wn, but no obvious winner
+
+* Longwave SNO_v7 versus SNO_v5
+\vspace{-0.1in}
+#+ATTR_LATEX: :width 0.75\linewidth 
+[[./Figs/Pdf/airs_v7_sno_and_airs_v5_sno_lw.pdf]]
+
+\vspace{-0.1in}
+- SNO_v5 more uniform
+
+
+* Conclusions
+- Both AIRS-CrIS and AIRS-IASI SNOs suggest that AIRS radiances have significant channel-to-channel calibration differences
+- We cannot attribute those differences to the AIRS SRF wdiths, centroid, or entrance filter fringe shifts
+- Tom Pagano's new v7 calibration improves AIRS-CrIS SNO in some regions, makes them worse in others.  Better/worse based on minimal changes 
+
+
+* COMMENT airs_v5_sno_minus_cris_and_v5_minus_v7_lw.pdf
+[[./Figs/Pdf/airs_v5_sno_minus_cris_and_v5_minus_v7_lw.pdf]]
+
+* COMMENT airs_v7_sno_and_airs_v5_sno_lw2.pdf
+[[./Figs/Pdf/airs_v7_sno_and_airs_v5_sno_lw2.pdf]]
+
 * COMMENT Text left, graph right
 \vspace{-0.2in}
 
@@ -221,4 +336,64 @@ Although scene type sampling is very different for AIRS and IASI, results are fa
 - AIRS SNO: 0.021 K  (0.05K unc?)
 - IASI SNO: 0.010 K  (0.05K unc?)
 - Global all FOR statistical differences: 0.013 K 
+
+
+
+
+
+* COMMENT
+#+BEGIN_EXPORT latex
+% --------------------------------------------------------------------
+\begin{frame}
+  \frametitle{AIRS:CrIS Summary: LW Radiometric}
+  \begin{itemize}
+  \item Do AIRS SRF functions need adjustment:
+    \item First, apply exact $\nu$ calibration to L1c (easy, just didn't do it)
+      - ~8 $\wn$ "fringes" in CrIS-AIRS.  Entrance filter fringe shifts?
+    \item Try ILS changes that are within estimated TVAC errors
+    \item Then, apply as offsets in AIRS2CRIS
+    \item \textcolor{maroon}{Testing does NOT require RTA calculations!}  AIRS ILS functions embedded in AIRS2CrIS algorithm.
+      
+  \end{itemize}
+  
+\end{frame}
+% --------------------------------------------------------------------
+\begin{frame}
+  \frametitle{AIRS:CrIS SNO showing LW (mod 12) Variability}
+  \begin{center}
+    \includegraphics[width=0.95\linewidth]{./Figs/Pdf/sno_ac1_lr_lw_2018d007e040_mean_bias.pdf}
+  \end{center}
+  
+\end{frame}
+% --------------------------------------------------------------------
+\begin{frame}
+  \frametitle{IASI:CrIS SNO showing LW detail}
+  \begin{center}
+   \includegraphics[width=0.8\linewidth]{./Figs/Pdf/sno_i1c1_2018q1_lr_lw_mean_bias_null.pdf}
+  \end{center}
+  
+\end{frame}
+% --------------------------------------------------------------------
+#+END_EXPORT
+* COMMENT airs_v5_sno_minus_cris_and_v5_minus_v7_lw2.pdf
+[[./Figs/Pdf/airs_v5_sno_minus_cris_and_v5_minus_v7_lw2.pdf]]
+
+* COMMENT  airs_v7_sno_lw2.pdf
+[[./Figs/Pdf/airs_v7_sno_lw2.pdf]]
+
+* COMMENT airs_v5_sno_lw2.pdf
+[[./Figs/Pdf/airs_v5_sno_lw2.pdf]]
+
+* COMMENT airs_v7_sno_and_airs_v5_sno_lw3.pdf
+[[./Figs/Pdf/airs_v7_sno_and_airs_v5_sno_lw3.pdf]]
+
+* COMMENT airs_v5_sno_minus_cris_and_v5_minus_v7_lw3.pdf
+[[./Figs/Pdf/airs_v5_sno_minus_cris_and_v5_minus_v7_lw3.pdf]]
+
+* COMMENT airs_v7_sno_and_airs_v5_sno_sw.pdf
+[[./Figs/Pdf/airs_v7_sno_and_airs_v5_sno_sw.pdf]]
+
+* COMMENT airs_v5_sno_minus_cris_and_v5_minus_v7_sw.pdf
+[[./Figs/Pdf/airs_v5_sno_minus_cris_and_v5_minus_v7_sw.pdf]]
+
 
